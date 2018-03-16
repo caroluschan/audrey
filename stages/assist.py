@@ -30,3 +30,9 @@ def id_generator(model, size=6, chars=string.ascii_uppercase + string.digits):
 def sendTextToAdmins(message):
 	for admin in getAdmins():
 			admin.sendText(message)
+
+def isApproved(person):
+	if person.is_approved:
+		return True
+	else:
+		person.sendText(person.user_name+", you will be notified when you signup is approved. If you cannot wait, please contact Charles.")
