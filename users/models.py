@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from django.db import models
 
 from stages.models import *
-from django.contrib.postgres.fields import JSONField
 from django.conf import settings
 import telepot
 import json
