@@ -4,8 +4,10 @@ from __future__ import unicode_literals
 from django.db import models
 
 from stages.models import *
+from django.contrib.postgres.fields import JSONField
 from django.conf import settings
 import telepot
+import json
 import sys
 import re
 
@@ -17,6 +19,7 @@ class Person(models.Model):
 	is_admin = models.NullBooleanField()
 	is_approved = models.NullBooleanField()
 	stage_code = models.CharField(max_length=200, null=True, blank=True)
+	storage = models.CharField(max_length=200, null=True, blank=True)
 
 	bot = telepot.Bot(settings.BOT_TOKEN)
 	
@@ -63,7 +66,29 @@ class Person(models.Model):
 	def unsetAsAdmin(self):
 		self.is_admin = False
 		self.save()
-	
+
+	def storageToJson(self):
+		tmp = {}
+		if self.storage is not None:
+			tmp =json.loads(self.storage)
+		return tmp
+
+	def setStorage(self, key, value):
+		tmp = self.storageToJson()
+		tmp[key] = value
+		self.storage = json.dumps(tmp)
+		self.save()
+
+	def popStorage(self, key):
+		tmp = self.storageToJson()
+		tmp.pop(key)
+		self.storage = json.dumps(tmp)
+		self.save()
+
+	def getStorage(self, key=None):		
+		return self.storageToJson()[key] if key is not None else self.storageToJson()
+
+
 	#######################
 	####Outward Message####
 	#######################

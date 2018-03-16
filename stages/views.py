@@ -48,7 +48,7 @@ from conversations.approve_signup import *
 from conversations.list_users import *
 
 #Conversation: rename user
-
+from conversations.rename_user import *
 
 #Conversation: list admin users
 from conversations.list_admin_users import *

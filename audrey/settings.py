@@ -243,6 +243,27 @@ STAGES= [
       'function_call':'list_users_stage_1(command,person)'
    },
 
+   #Conversation: rename user
+    {
+      'command_pattern_check':'command == "/renameuser"',
+      'is_first':True,
+      'stage_code':'renameUser_1',
+      'function_call':'rename_user_stage_1(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'renameUser_2',
+      'function_call':'rename_user_stage_2(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'renameUser_3',
+      'function_call':'rename_user_stage_3(command,person)'
+   },
+
+
    #Conversation: list admin users
    {
       'command_pattern_check':'command == "/listadmins"',
