@@ -4,13 +4,12 @@ from stages.assist import *
 
 #Conversation: authorization
 def auth_stage_1(command, person): #command: /signup | stage_code: auth_1 | trigger:command=="/signup"
-	person.updateUserProgress('auth_1')
-	if (Person.objects.filter(telegram_id=person.telegram_id).count() == 0):
+	if person.user_name == None:
+		person.updateUserProgress('auth_1')
 		person.stageUp()
 		person.sendText("Hello! What is your name?")
 	else:
 		person.sendText("You have signed up already")
-		person.stageEnd()
 		
 def auth_stage_2(command, person): #command: [name] | stage_code: auth_2
 	if Person.objects.filter(user_name=command).count() > 0:
