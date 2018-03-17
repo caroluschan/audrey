@@ -45,7 +45,7 @@ def get_master_scores_stage_3(command, person):
 		elif command[:9] == '/songcode':
 			person.stageEnd()
 			get_score_by_code_stage_1(command,person)
-		elif: Index.objects.filter(identifier=command[1:]).count() > 0:
+		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			get_master_scores_stage_2(command, persons)
 		else:
