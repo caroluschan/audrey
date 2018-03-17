@@ -6,13 +6,13 @@ def announcement_stage_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('announcement_1')
 		person.stageUp()
-		person.sendText('Who are the audiences?\n\n/Public        /Admin\n/cancel')
+		person.sendText('Who are the audiences?\n\n/Public        /Admin\n\n/cancel')
 
 def announcement_stage_2(command, person):
 	if command[1:] == 'Public' or command[1:] == 'Admin':
 		person.setStorage('announcement',{'audiences':command[1:]})
 		person.stageUp()
-		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n/cancel')
+		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
 	elif command[1:] == 'cancel':
 		person.stageEnd()
 		person.sendText('Your request has been cancelled.')
@@ -25,16 +25,16 @@ def announcement_stage_3(command, person):
 	if command[1:] == 'Yes' or command[1:] == 'No':
 		person.stageUp()
 		tmp = person.getStorage('announcement')
-		tmp['named'] = False
+		tmp['named'] = True if command[1:] == 'Yes' else False
 		person.setStorage('announcement', tmp)
-		person.sendText('Tell me the announcement to be made.\n/cancel')
+		person.sendText('Tell me the announcement to be made.\n\n/cancel')
 	elif command[1:] == 'cancel':
 		person.stageEnd()
 		person.popStorage('announcement')
 		person.sendText('Your request has been cancelled.')
 	else:
 		person.stageDown()
-		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n/cancel')
+		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
 
 def announcement_stage_4(command, person):
 	if command[1:] != 'cancel':
@@ -42,7 +42,7 @@ def announcement_stage_4(command, person):
 		tmp = person.getStorage('announcement')
 		tmp['message'] = command
 		person.setStorage('announcement', tmp)
-		person.sendText('Announcement will be made as soon as you tap /send.\n/cancel')
+		person.sendText('Announcement will be made as soon as you tap /send.\n\n/cancel')
 	else:
 		person.stageEnd()
 		person.popStorage('announcement')
@@ -73,5 +73,5 @@ def announcement_stage_5(command, person):
 		person.popStorage('announcement')
 		person.sendText('Your request has been cancelled.')
 	else:
-		person.sendText('Announcement will be made as soon as you tap /send.\n/cancel')
+		person.sendText('Announcement will be made as soon as you tap /send.\n\n/cancel')
 
