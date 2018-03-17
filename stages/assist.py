@@ -31,6 +31,10 @@ def sendTextToAdmins(message):
 	for admin in getAdmins():
 			admin.sendText(message)
 
+def sendTextToAll(message):
+	for person in Person.objects.all():
+			person.sendText(message)
+
 def isApproved(person):
 	if person.is_approved:
 		return True

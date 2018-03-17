@@ -321,5 +321,38 @@ STAGES= [
       'stage_code':'listAdminFunctions_1',
       'function_call':'list_admin_functions_stage_1(command,person)'
    },
+   
+   #Conversation: Announcement
+   {
+      'command_pattern_check':'command == "/announcement"',
+      'is_first':True,
+      'stage_code':'announcement_1',
+      'function_call':'announcement_stage_1(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'announcement_2',
+      'function_call':'announcement_stage_2(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'announcement_3',
+      'function_call':'announcement_stage_3(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'announcement_4',
+      'function_call':'announcement_stage_4(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'announcement_5',
+      'function_call':'announcement_stage_5(command,person)'
+   }
+
    #Conversation: upload score???
 ]
