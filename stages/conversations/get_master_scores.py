@@ -47,7 +47,7 @@ def get_master_scores_stage_3(command, person):
 			get_score_by_code_stage_1(command,person)
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
-			get_master_scores_stage_2(command, persons)
+			get_master_scores_stage_2(command, person)
 		else:
 			person.sendText('I hope you have found the hymn you need :)')
 			person.stageEnd()
