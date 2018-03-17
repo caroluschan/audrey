@@ -53,14 +53,12 @@ def announcement_stage_5(command, person):
 		tmp = person.getStorage('announcement')
 		message = ''
 		if tmp['audiences'] == 'Public':
-			message += '==Public Announcement'
+			message += '==Public Announcement==\n\n'
 		elif tmp['audiences'] == 'Admin':
-			message += '==Admin Internal Announcement'
-		if tmp['named']:
-			message += ' from' + person.user_name + '==\n\n'
-		else:
-			message += '==\n\n'
+			message += '==Admin Internal Announcement==\n\n'
 		message += tmp['message']
+		if tmp['named']:
+			message += '\n\n' person.user_name
 		if tmp['audiences'] == 'Public':
 			sendTextToAll(message)
 		elif tmp['audiences'] == 'Admin':
