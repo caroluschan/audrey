@@ -58,7 +58,7 @@ def announcement_stage_5(command, person):
 			message += '==Admin Internal Announcement==\n\n'
 		message += tmp['message']
 		if tmp['named']:
-			message += '\n\n' person.user_name
+			message += '\n\n' + person.user_name
 		if tmp['audiences'] == 'Public':
 			sendTextToAll(message)
 		elif tmp['audiences'] == 'Admin':
