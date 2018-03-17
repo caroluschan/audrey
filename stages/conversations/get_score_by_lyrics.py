@@ -27,7 +27,7 @@ def get_score_by_lyrics_stage_2(command, person):
 		results = []
 		matches = []
 		if searchResult:
-			for x in range(0,10):
+			for x in range(0,len(searchResult)):
 				results.append(searchResult[x].name[1:-1] if searchResult[x].name[:1] == '【' else searchResult[x].name)
 			print(results)
 			for result in results:
