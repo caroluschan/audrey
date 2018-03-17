@@ -8,11 +8,11 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_person_storage'),
+        ('users', '0003_person_stage_code.py'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='person',
             name='storage',
             field=models.CharField(blank=True, max_length=200, null=True),
