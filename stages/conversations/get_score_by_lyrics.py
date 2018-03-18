@@ -22,7 +22,7 @@ def get_score_by_lyrics_stage_2(command, person):
 		person.sendText("OK let me go find it in the library. May take a while")
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
-		keyword = command + ' site:http://www.christianstudy.com/data/hymns/text'
+		keyword = command + ' site:christianstudy.com/data/hymns/text'
 		searchResult = google.search(keyword, 1, 'zh-CN')
 		results = []
 		matches = []
