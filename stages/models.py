@@ -13,3 +13,5 @@ class Scores(models.Model):
 class Index(models.Model):
 	identifier = models.CharField(max_length=200)
 	index = models.CharField(max_length=200)
+	language = models.CharField(max_length=200, null=True, blank=True) #en, cn, others
+	stroke = models.CharField(max_length=200, null=True, blank=True)

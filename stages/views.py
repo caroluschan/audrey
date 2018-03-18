@@ -59,6 +59,15 @@ from conversations.set_admin import *
 #Conversation: unset admin
 from conversations.unset_admin import *
 
+#Conversation: set Score Manager
+from conversations.set_score_manager import *
+
+#Conversation: unset Score Manager
+from conversations.unset_score_manager import *
+
+#Conversation: list score manager
+from conversations.list_score_manager_users import *
+
 #Conversation: delete user
 from conversations.delete_user import *
 

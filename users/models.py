@@ -17,6 +17,7 @@ class Person(models.Model):
 	user_name = models.CharField(max_length=200, null=True, blank=True)
 	is_admin = models.NullBooleanField()
 	is_approved = models.NullBooleanField()
+	is_score_manager = models.BooleanField(default=False)
 	stage_code = models.CharField(max_length=200, null=True, blank=True)
 	storage = models.CharField(max_length=200, null=True, blank=True)
 
@@ -64,6 +65,14 @@ class Person(models.Model):
 
 	def unsetAsAdmin(self):
 		self.is_admin = False
+		self.save()
+
+	def setAsScoreManager(self):
+		self.is_score_manager = True
+		self.save()
+
+	def unsetAsScoreManager(self):
+		self.is_score_manager = False
 		self.save()
 
 	def storageToJson(self):

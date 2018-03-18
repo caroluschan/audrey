@@ -30,7 +30,7 @@ def handle(request):
 	elif command == "/start":
 		bot.sendMessage(telegram_id, "Hello there! I am Audrey the Hymns Manager. Please signup first by tapping /signup in order for me to serve you!")
 	elif command == "/signup":
-		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False, stage_code=None, user_name=None)
+		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False,is_store_manager=False, stage_code=None, user_name=None)
 		newUser.save()
 		processCommand(command, newUser)
 	else:

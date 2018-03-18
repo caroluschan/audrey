@@ -133,8 +133,7 @@ STAGES= [
 
     ##########################
     ###Normal User Function###
-    ##########################
-
+    ##########################462615061:AAHqdSi1rMiMpQ9vEpVn3COOkrnSbHrfWm4
     #Conversation: authorization
    {
       'command_pattern_check':'command == "/signup"',
@@ -272,6 +271,14 @@ STAGES= [
       'function_call':'list_admin_users_stage_1(command,person)'
    },
 
+   #Conversation: list score manager users
+   {
+      'command_pattern_check':'command == "/listscoremanagers"',
+      'is_first':True,
+      'stage_code':'listScoreManagers_1',
+      'function_call':'list_score_manager_users_stage_1(command,person)'
+   },
+
    #Conversation: set user as admin
    {
       'command_pattern_check':'command == "/setadmin"',
@@ -298,6 +305,34 @@ STAGES= [
       'is_first':False,
       'stage_code':'unsetAdmin_2',
       'function_call':'unset_admin_stage_2(command,person)'
+   },
+
+   #Conversation: set user as score manager
+   {
+      'command_pattern_check':'command == "/setscoremanager"',
+      'is_first':True,
+      'stage_code':'setScoreManager_1',
+      'function_call':'set_score_manager_stage_1(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'setScoreManager_2',
+      'function_call':'set_score_manager_stage_2(command,person)'
+   },
+
+   #Conversation: unset score manager
+   {
+      'command_pattern_check':'command == "/unsetscoremanager"',
+      'is_first':True,
+      'stage_code':'unsetScoreManager_1',
+      'function_call':'unset_score_manager_stage_1(command,person)'
+   },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'unsetScoreManager_2',
+      'function_call':'unset_score_manager_stage_2(command,person)'
    },
 
    #Conversation: delete user

@@ -16,7 +16,9 @@ def handle(msg):
 	#print(msg)
 	chat_id = msg['chat']['id']
 	command = None
-	if 'text' in msg:
+	if 'document' in msg:
+		command = msg['document']
+	elif 'text' in msg:
 		command = msg['text']
 		# if is_ascii(command) == False:
 		# 	command = unicode(command, "utf-8")
