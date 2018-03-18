@@ -356,6 +356,14 @@ STAGES= [
       'stage_code':'listAdminFunctions_1',
       'function_call':'list_admin_functions_stage_1(command,person)'
    },
+
+    #Conversation: List Score Manager functions
+   {
+      'command_pattern_check':'command == "/scoremanagermenu"',
+      'is_first':True,
+      'stage_code':'listScoreManagerFunctions_1',
+      'function_call':'list_score_manager_functions_stage_1(command,person)'
+   },
    
    #Conversation: Announcement
    {

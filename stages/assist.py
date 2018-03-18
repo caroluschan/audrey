@@ -29,7 +29,7 @@ def isScoreManager(person):
 	if person.is_score_manager:
 		return True
 	else:
-		person.sendText("I'm sorry, only admin can make this request.")
+		person.sendText("I'm sorry, only score manager can make this request.")
 
 def isApproved(person):
 	if person.is_approved:

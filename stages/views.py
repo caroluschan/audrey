@@ -74,6 +74,9 @@ from conversations.delete_user import *
 #Conversation: List Admin functions
 from conversations.list_admin_functions import *
 
+#Conversation: List Admin functions
+from conversations.list_score_manager_functions import *
+
 #Conversation: announcement
 from conversations.announcement import *
 
