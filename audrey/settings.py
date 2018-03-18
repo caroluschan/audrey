@@ -359,7 +359,7 @@ STAGES= [
 
     #Conversation: List Score Manager functions
    {
-      'command_pattern_check':'command == "/scoremanagermenu"',
+      'command_pattern_check':'command == "/scoremgrmenu"',
       'is_first':True,
       'stage_code':'listScoreManagerFunctions_1',
       'function_call':'list_score_manager_functions_stage_1(command,person)'
