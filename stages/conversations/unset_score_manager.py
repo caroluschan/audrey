@@ -20,7 +20,7 @@ def unset_score_manager_stage_1(command, person):
 
 def unset_score_manager_stage_2(command, person):
 	target = Person.objects.filter(telegram_id=command[1:])[0]
-	target.unsetAsAdmin()
+	target.unsetAsScoreManager()
 	target.sendText(target.user_name + ' has been unset as score manager by ' + person.user_name)
 	sendTextToAdmins(target.user_name + ' has been unset as score manager by ' + person.user_name)
 	sendTextToScoreManagersNotAdmin(target.user_name + ' has been unset as score manager by ' + person.user_name)
