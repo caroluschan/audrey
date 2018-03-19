@@ -61,7 +61,7 @@ def get_master_scores_stage_2(command, person):
 		else:
 			message += '====' + command[1:] + ' Strokes====\n\n'
 			indexs = Index.objects.filter(language='cn').filter(stroke=command[1:])
-			for index in indexs
+			for index in indexs:
 				message += index.index + '  /' + index.identifier +'\n'
 			message += '\n/back'
 			person.sendText(message)
