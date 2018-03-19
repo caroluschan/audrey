@@ -21,7 +21,7 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
 		line = 0
 		for stroke in strokes:
-			message += '/' + stroke + '  '
+			message += '/s' + stroke + '  '
 			line += 1
 			if line == 5:
 				message += '\n\n'
@@ -56,11 +56,11 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 def get_master_scores_stage_2(command, person):
 	if isApproved(person):
 		person.stageUp()
-		if isDigit(command[1:]) or isEnglish(command[1:]):
+		if command[:2] != '/s':
 			get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
 		else:
 			message += '====' + command[1:] + ' Strokes====\n\n'
-			indexs = Index.objects.filter(language='cn').filter(stroke=command[1:])
+			indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 			for index in indexs:
 				message += index.index + '  /' + index.identifier +'\n'
 			message += '\n/back'
