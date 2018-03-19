@@ -17,7 +17,7 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 		connection.cursor()
 		connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 		message = 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.\n\n'
-		message += '------筆劃------\n\n'
+		message += '------Stroke------\n\n'
 		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
 		line = 0
 		for stroke in strokes:
