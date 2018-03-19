@@ -17,7 +17,7 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 		connection.cursor()
 		connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 		message = 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.\n\n'
-		message += '------Stroke------\n\n'
+		message += '------'+'筆劃'.encode('utf-8')+'------\n\n'
 		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
 		line = 0
 		for stroke in strokes:
@@ -59,7 +59,9 @@ def get_master_scores_stage_2(command, person):
 		if command[:2] != '/s':
 			get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
 		else:
-			message = '====' + command[1:] + ' Strokes====\n\n'
+			reload(sys)
+			sys.setdefaultencoding('utf-8')
+			message = '====' + command[1:] + '劃'.encode('utf-8') +'====\n\n'
 			indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 			for index in indexs:
 				message += index.index + '  /' + index.identifier +'\n'
