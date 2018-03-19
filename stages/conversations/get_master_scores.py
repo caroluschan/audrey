@@ -36,7 +36,7 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 		for letter in letters:
 			message += '/' + letter['index'] + '  '
 			line += 1
-			if line == 5:
+			if line == 7:
 				message += '\n\n'
 				line = 0
 		if line != 0:
