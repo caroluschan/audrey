@@ -55,37 +55,45 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 
 
 def get_master_scores_stage_2(command, person):
-	if isApproved(person):
-		person.stageUp()
-		if command[:2] != '/s':
-			get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
-		else:
-			reload(sys)
-			sys.setdefaultencoding('utf-8')
-			message = '====' + command[1:] + '劃'.encode('utf-8') +'====\n\n'
-			indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
-			for index in indexs:
-				message += index.index + '  /' + index.identifier +'\n'
-			message += '\n/back'
-			person.sendText(message)
+	try:
+		if isApproved(person):
+			person.stageUp()
+			if command[:2] != '/s':
+				get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
+			else:
+				reload(sys)
+				sys.setdefaultencoding('utf-8')
+				message = '====' + command[1:] + '劃'.encode('utf-8') +'====\n\n'
+				indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
+				for index in indexs:
+					message += index.index + '  /' + index.identifier +'\n'
+				message += '\n/back'
+				person.sendText(message)
+	except IndexError:
+		person.sendText("Sorry, I do not understand")
+		person.stageEnd()
 
 def get_master_scores_stage_3(command, person):
-	if isApproved(person):
-		if command[1:] != 'back':
-			person.stageUp()
-			reload(sys)
-			sys.setdefaultencoding('utf-8')
-			connection.cursor()
-			connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
-			index = Index.objects.filter(identifier=command[1:])[0].index
-			message = '====List of Scores for '+ index +'====\n\n'
-			scores = Scores.objects.filter(index=index).extra(select={'length':'Length(file_path)'}).order_by('length')
-			for score in scores:
-				message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
-			message += '\n\n Search by another letter?\n/Yes        /No'
-			person.sendText(message)
-		else:
-			get_master_scores_stage_1(command, person)
+	try:
+		if isApproved(person):
+			if command[1:] != 'back':
+				person.stageUp()
+				reload(sys)
+				sys.setdefaultencoding('utf-8')
+				connection.cursor()
+				connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
+				index = Index.objects.filter(identifier=command[1:])[0].index
+				message = '====List of Scores for '+ index +'====\n\n'
+				scores = Scores.objects.filter(index=index).extra(select={'length':'Length(file_path)'}).order_by('length')
+				for score in scores:
+					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
+				message += '\n\n Search by another letter?\n/Yes        /No'
+				person.sendText(message)
+			else:
+				get_master_scores_stage_1(command, person)
+	except IndexError:
+		person.sendText("Sorry, I do not understand")
+		person.stageEnd()
 
 def get_master_scores_stage_4(command, person):
 	if isApproved(person):
