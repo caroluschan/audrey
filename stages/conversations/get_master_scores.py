@@ -59,7 +59,7 @@ def listScores_2(command, person):
 		if isApproved(person):
 			person.stageUp()
 			if command[:2] != '/s':
-				get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
+				listScores_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
 			else:
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
@@ -90,7 +90,7 @@ def listScores_3(command, person):
 				message += '\n\n Search by another letter?\n/Yes        /No'
 				person.sendText(message)
 			else:
-				get_master_scores_stage_1(command, person)
+				listScores_1(command, person)
 	except IndexError:
 		person.sendText("Sorry, I do not understand")
 		person.stageEnd()
@@ -98,14 +98,14 @@ def listScores_3(command, person):
 def listScores_4(command, person):
 	if isApproved(person):
 		if command[1:] == 'Yes':
-			get_master_scores_stage_1(command, person)
+			listScores_1(command, person)
 		elif command[:9] == '/songcode':
 			person.stageEnd()
-			get_score_by_code_stage_1(command,person)
+			songCode_1(command,person)
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()
-			get_master_scores_stage_3(command, person)
+			listScores_3(command, person)
 		elif command[1:] == 'No':
 			person.sendText('I hope you have found the hymn you need :)')
 			person.stageEnd()
