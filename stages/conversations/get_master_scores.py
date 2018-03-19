@@ -94,7 +94,7 @@ def get_master_scores_stage_4(command, person):
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()
-			get_master_scores_stage_2(command, person)
+			get_master_scores_stage_3(command, person)
 		else:
 			person.sendText('I hope you have found the hymn you need :)')
 			person.stageEnd()
