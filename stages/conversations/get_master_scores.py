@@ -95,6 +95,9 @@ def get_master_scores_stage_4(command, person):
 			person.stageDown()
 			person.stageDown()
 			get_master_scores_stage_3(command, person)
-		else:
+		elif command[1:] == 'No':
 			person.sendText('I hope you have found the hymn you need :)')
+			person.stageEnd()
+		else:
+			person.sendText("Sorry, I do not understand")
 			person.stageEnd()
