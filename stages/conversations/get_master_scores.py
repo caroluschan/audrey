@@ -100,8 +100,8 @@ def listScores_4(command, person):
 		if command[1:] == 'Yes':
 			listScores_1(command, person)
 		elif command[:9] == '/songcode':
-			person.stageEnd()
 			songCode_1(command,person)
+			person.sendText('Search by another letter?\n/Yes        /No')
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()
