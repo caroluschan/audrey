@@ -19,7 +19,7 @@ def announcement_2(command, person):
 	else:
 		person.sendText('I do not understand.')
 		person.stageDown()
-		announcement_stage_1(command, person)
+		announcement_1(command, person)
 
 def announcement_3(command, person):
 	if command[1:] == 'Yes' or command[1:] == 'No':
