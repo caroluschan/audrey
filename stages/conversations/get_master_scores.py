@@ -76,7 +76,12 @@ def listScores_2(command, person):
 def listScores_3(command, person):
 	try:
 		if isApproved(person):
-			if command[1:] != 'back':
+			if command[1:] == 'back':
+				listScores_1(command, person)
+			elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
+				person.stageDown()
+				listScores_2(command,person)
+			else:
 				person.stageUp()
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
@@ -89,8 +94,7 @@ def listScores_3(command, person):
 					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
 				message += '\n\n Search by another letter?\n/Yes        /No'
 				person.sendText(message)
-			else:
-				listScores_1(command, person)
+				
 	except IndexError:
 		person.sendText("Sorry, I do not understand")
 		person.stageEnd()
