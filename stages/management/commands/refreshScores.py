@@ -1,5 +1,8 @@
 import os
 import sys
+import json
+import requests
+import cookielib
 from stages.assist import *
 from stages.models import *
 from django.conf import settings
@@ -15,6 +18,19 @@ class Command(BaseCommand):
 			return False
 		else:
 			return True
+
+	def isDigit(self, s):
+		numbers = ['1','2','3','4','5','6','7','8','9','0']
+		return True if s in numbers else False
+
+	def strokeChecking(self, s):
+		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
+		for stroke in strokes:
+			with open(settings.BASE_DIR+'/stroke/'+stroke, 'r') as f:
+				data = f.read()
+				if s in data:
+					return stroke
+		return None
 
 	def handle(self, *args, **options):
 		reload(sys)
@@ -35,8 +51,17 @@ class Command(BaseCommand):
 			if record.file_path not in scores:
 				print(record.file_path+' is removed from record.')
 				record.delete()
-		Index.objects.all().delete()
 		for index in Scores.objects.values('index').distinct():
-			Index(identifier=id_generator(Index), index=index['index']).save()
-			print('Indexing ' + index['index'])
+			if Index.objects.filter(index=index['index']).count() == 0:
+				lang = None
+				stroke = None
+				if self.isDigit(index['index']):
+					lang = 'others'
+				elif self.isEnglish(index['index']):
+					lang = 'en'
+				else:
+					lang = 'cn'
+					stroke = self.strokeChecking(index['index'])
+				Index(identifier=id_generator(Index), index=index['index'], language=lang, stroke=stroke).save()
+				print('Indexing ' + index['index'])
 			
