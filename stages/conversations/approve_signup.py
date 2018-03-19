@@ -3,7 +3,7 @@ from users.models import *
 from stages.assist import *
 
 #Conversation: user approval
-def approve_stage_1(command, person): #command: /approve[telegram_id] | stage_code: approve_1 | trigger: command[:8] == "/approve"
+def approve_1(command, person): #command: /approve[telegram_id] | stage_code: approve_1 | trigger: command[:8] == "/approve"
 	if isAdmin(person):
 		user = findPersonByTelegramId(command[8:])
 		user.approve()

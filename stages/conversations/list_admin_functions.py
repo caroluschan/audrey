@@ -2,7 +2,7 @@ from users.models import *
 from stages.views import *
 from stages.models import *
 
-def list_admin_functions_stage_1(command,person):
+def listAdminFunctions_1(command,person):
 	if isAdmin(person):
 		functions = []
 		functions.append('List Users: /listusers\n')

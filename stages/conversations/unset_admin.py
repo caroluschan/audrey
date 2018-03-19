@@ -3,7 +3,7 @@ from users.models import *
 from stages.assist import *
 from django.conf import settings
 
-def unset_admin_stage_1(command, person):
+def unsetAdmin_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('unsetAdmin_1')
 		person.stageUp()
@@ -18,7 +18,7 @@ def unset_admin_stage_1(command, person):
 			person.stageEnd()
 		person.sendText(message)
 
-def unset_admin_stage_2(command, person):
+def unsetAdmin_2(command, person):
 	target = Person.objects.filter(telegram_id=command[1:])[0]
 	target.unsetAsAdmin()
 	target.sendText(target.user_name + ' has been unset as admin by ' + person.user_name)

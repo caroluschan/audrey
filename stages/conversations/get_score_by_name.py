@@ -7,13 +7,13 @@ from stages.assist import *
 import sys
 
 #Conversation: get score by lyrics    
-def get_score_by_name_stage_1(command, person): #command: /scorebyname | stage_code: scoreByName_1 | trigger: command == "/scorebyname"
+def scoreByName_1(command, person): #command: /scorebyname | stage_code: scoreByName_1 | trigger: command == "/scorebyname"
 	if isApproved(person):
 		person.updateUserProgress('scoreByName_1')
 		person.stageUp()
 		person.sendText("Please tell me the name of the song.")
 
-def get_score_by_name_stage_2(command, person):
+def scoreByName_2(command, person):
 	if isApproved(person):
 		person.sendText("OK let me go find it in the library. May take a while")
 		reload(sys)

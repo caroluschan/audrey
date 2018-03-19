@@ -3,7 +3,7 @@ from users.models import *
 from stages.assist import *
 from django.conf import settings
 
-def unset_score_manager_stage_1(command, person):
+def unsetScoreManager_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('unsetScoreManager_1')
 		person.stageUp()
@@ -18,7 +18,7 @@ def unset_score_manager_stage_1(command, person):
 			person.stageEnd()
 		person.sendText(message)
 
-def unset_score_manager_stage_2(command, person):
+def unsetScoreManager_2(command, person):
 	target = Person.objects.filter(telegram_id=command[1:])[0]
 	target.unsetAsScoreManager()
 	target.sendText(target.user_name + ' has been unset as score manager by ' + person.user_name)

@@ -2,13 +2,13 @@ from stages.models import *
 from users.models import *
 from stages.assist import *
 
-def announcement_stage_1(command, person):
+def announcement_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('announcement_1')
 		person.stageUp()
 		person.sendText('Who are the audiences?\n\n/Public        /Admin\n\n/cancel')
 
-def announcement_stage_2(command, person):
+def announcement_2(command, person):
 	if command[1:] == 'Public' or command[1:] == 'Admin':
 		person.setStorage('announcement',{'audiences':command[1:]})
 		person.stageUp()
@@ -21,7 +21,7 @@ def announcement_stage_2(command, person):
 		person.stageDown()
 		announcement_stage_1(command, person)
 
-def announcement_stage_3(command, person):
+def announcement_3(command, person):
 	if command[1:] == 'Yes' or command[1:] == 'No':
 		person.stageUp()
 		tmp = person.getStorage('announcement')
@@ -36,7 +36,7 @@ def announcement_stage_3(command, person):
 		person.stageDown()
 		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
 
-def announcement_stage_4(command, person):
+def announcement_4(command, person):
 	if command[1:] != 'cancel':
 		person.stageUp()
 		tmp = person.getStorage('announcement')
@@ -48,7 +48,7 @@ def announcement_stage_4(command, person):
 		person.popStorage('announcement')
 		person.sendText('Your request has been cancelled.')
 
-def announcement_stage_5(command, person):
+def announcement_5(command, person):
 	if command[1:] == 'send':
 		tmp = person.getStorage('announcement')
 		message = ''

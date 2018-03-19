@@ -3,7 +3,7 @@ from users.models import *
 from stages.assist import *
 from django.conf import settings
 
-def set_admin_stage_1(command, person):
+def setAdmin_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('setAdmin_1')
 		person.stageUp()
@@ -18,7 +18,7 @@ def set_admin_stage_1(command, person):
 			person.stageEnd()
 		person.sendText(message)
 
-def set_admin_stage_2(command, person):
+def setAdmin_2(command, person):
 	target = Person.objects.filter(telegram_id=command[1:])[0]
 	target.setAsAdmin()
 	sendTextToAdmins(target.user_name + ' has been set as admin by ' + person.user_name)

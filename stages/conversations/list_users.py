@@ -2,7 +2,7 @@ from stages.models import *
 from users.models import *
 from stages.assist import *
 
-def list_users_stage_1(command, person): #command: /listusers | stage_code: listusers_1 | trigger: command == "/listusers"
+def listUsers_1(command, person): #command: /listusers | stage_code: listusers_1 | trigger: command == "/listusers"
 	if isAdmin(person):
 		lou = Person.objects.all()
 		message = '==List of Users==\n\nName\tTelegram ID\n'

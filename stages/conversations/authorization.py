@@ -3,7 +3,7 @@ from users.models import *
 from stages.assist import *
 
 #Conversation: authorization
-def auth_stage_1(command, person): #command: /signup | stage_code: auth_1 | trigger:command=="/signup"
+def auth_1(command, person):
 	if person.user_name == None:
 		person.updateUserProgress('auth_1')
 		person.stageUp()
@@ -11,7 +11,7 @@ def auth_stage_1(command, person): #command: /signup | stage_code: auth_1 | trig
 	else:
 		person.sendText("You have signed up already")
 		
-def auth_stage_2(command, person): #command: [name] | stage_code: auth_2
+def auth_2(command, person): #command: [name] | stage_code: auth_2
 	if Person.objects.filter(user_name=command).count() > 0:
 		person.sendText('I\'m sorry :( This name has been used. Please make up another one.')
 	else:
@@ -20,5 +20,5 @@ def auth_stage_2(command, person): #command: [name] | stage_code: auth_2
 		person.sendText("Nice to meet you, "+command+". Your signup is well received. You will be notified when you signup is approved.")
 		sendTextToAdmins(command+" has signed up.\n/approve"+person.telegram_id)
 
-def auth_stage_3(command, person): #command: ??? | stage_code: auth_3
+def auth_3(command, person): #command: ??? | stage_code: auth_3
 	person.sendText(person.user_name+", you will be notified when you signup is approved. If you cannot wait, please contact Charles.")

@@ -2,7 +2,7 @@ from stages.models import *
 from users.models import *
 from stages.assist import *
 
-def delete_user_stage_1(command, person): #command: /deleteuser | stage_code: deleteUser_1 | trigger: command == "/deleteuser"
+def deleteUser_1(command, person): #command: /deleteuser | stage_code: deleteUser_1 | trigger: command == "/deleteuser"
 	if isAdmin(person):
 		person.updateUserProgress('deleteUser_1')
 		person.stageUp()
@@ -12,7 +12,7 @@ def delete_user_stage_1(command, person): #command: /deleteuser | stage_code: de
 			message += user.user_name + '\t/' + user.telegram_id +  '\n'
 		person.sendText(message)
 
-def delete_user_stage_2(command, person):
+def deleteUser_2(command, person):
 	target = Person.objects.filter(telegram_id=command[1:])
 
 	if target:

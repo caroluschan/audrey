@@ -9,7 +9,7 @@ import os
 import sys
 
 #Conversation: get master list of scores
-def get_master_scores_stage_1(command, person): #command: /listscores | stage_code: listScores_1 | trigger: command == "/listscores"
+def listScores_1(command, person): #command: /listscores | stage_code: listScores_1 | trigger: command == "/listscores"
 	if isApproved(person):
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
@@ -54,7 +54,7 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 		person.sendText(message)
 
 
-def get_master_scores_stage_2(command, person):
+def listScores_2(command, person):
 	try:
 		if isApproved(person):
 			person.stageUp()
@@ -73,7 +73,7 @@ def get_master_scores_stage_2(command, person):
 		person.sendText("Sorry, I do not understand")
 		person.stageEnd()
 
-def get_master_scores_stage_3(command, person):
+def listScores_3(command, person):
 	try:
 		if isApproved(person):
 			if command[1:] != 'back':
@@ -95,7 +95,7 @@ def get_master_scores_stage_3(command, person):
 		person.sendText("Sorry, I do not understand")
 		person.stageEnd()
 
-def get_master_scores_stage_4(command, person):
+def listScores_4(command, person):
 	if isApproved(person):
 		if command[1:] == 'Yes':
 			get_master_scores_stage_1(command, person)

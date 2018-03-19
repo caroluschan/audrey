@@ -10,14 +10,14 @@ import operator
 import sys
 
 #Conversation: get score by lyrics    
-def get_score_by_lyrics_stage_1(command, person): #command: /scorebylyrics | stage_code: scorebylyrics_1 | trigger: command[:14] == "/scorebylyrics"
+def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: scorebylyrics_1 | trigger: command[:14] == "/scorebylyrics"
 	if isApproved(person):
 		person.updateUserProgress('scoreByLyrics_1')
 		person.stageUp()
 		person.sendText("Please tell me the lyrics.")
 
 
-def get_score_by_lyrics_stage_2(command, person):
+def scoreByLyrics_2(command, person):
 	if isApproved(person):
 		person.sendText("OK let me go find it in the library. May take a while")
 		reload(sys)

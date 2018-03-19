@@ -127,8 +127,6 @@ BOT_TOKEN = str('462615061:AAHqdSi1rMiMpQ9vEpVn3COOkrnSbHrfWm4')
 
 SUPERADMIN = '47237387'
 
-SCORE_SECTIONS = 20
-
 STAGES= [
 
     ##########################
@@ -137,83 +135,31 @@ STAGES= [
     #Conversation: authorization
    {
       'command_pattern_check':'command == "/signup"',
-      'is_first':True,
-      'stage_code':'auth_1',
-      'function_call':'auth_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'auth_2',
-      'function_call':'auth_stage_2(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'auth_3',
-      'function_call':'auth_stage_3(command,person)'
+      'stage_code':'auth'
    },
 
    #Conversation: get master list of scores
    {
       'command_pattern_check':'command == "/listscores"',
-      'is_first':True,
-      'stage_code':'listScores_1',
-      'function_call':'get_master_scores_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'listScores_2',
-      'function_call':'get_master_scores_stage_2(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'listScores_3',
-      'function_call':'get_master_scores_stage_3(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'listScores_4',
-      'function_call':'get_master_scores_stage_4(command,person)'
+      'stage_code':'listScores'
    },
 
    #Conversation: get score by code
    {
       'command_pattern_check':'command[:9] == "/songcode"',
-      'is_first':True,
-      'stage_code':'songCode_1',
-      'function_call':'get_score_by_code_stage_1(command,person)'
+      'stage_code':'songCode'
    },
 
    #Conversation: get score by song name
    {  
       'command_pattern_check':'command == "/scorebyname"',
-      'is_first':True,
-      'stage_code':'scoreByName_1',
-      'function_call':'get_score_by_name_stage_1(command,person)'
-   },
-   {  
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'scoreByName_2',
-      'function_call':'get_score_by_name_stage_2(command,person)'
+      'stage_code':'scoreByName'
    },
 
    #Conversation: get score by lyrics
    {
       'command_pattern_check':'command[:14] == "/scorebylyrics"',
-      'is_first':True,
-      'stage_code':'scoreByLyrics_1',
-      'function_call':'get_score_by_lyrics_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'scoreByLyrics_2',
-      'function_call':'get_score_by_lyrics_stage_2(command,person)'
+      'stage_code':'scoreByLyrics'
    },
 
    #Conversation: get lyrics by song name
@@ -223,9 +169,7 @@ STAGES= [
    #Conversation: cancel
    {
       'command_pattern_check':'command == "/cancel"',
-      'is_first':True,
-      'stage_code':'cancel_1',
-      'function_call':'cancel_stage_1(command,person)'
+      'stage_code':'cancel'
    },
 
     #########################
@@ -235,173 +179,82 @@ STAGES= [
     #Conversation: user approval  
    {
       'command_pattern_check':'command[:8] == "/approve"',
-      'is_first':True,
-      'stage_code':'approve_1',
-      'function_call':'approve_stage_1(command,person)'
+      'stage_code':'approve'
    },
 
    #Conversation: list users
    {
       'command_pattern_check':'command == "/listusers"',
-      'is_first':True,
-      'stage_code':'listUsers_1',
-      'function_call':'list_users_stage_1(command,person)'
+      'stage_code':'listUsers'
    },
 
    #Conversation: rename user
     {
       'command_pattern_check':'command == "/renameuser"',
-      'is_first':True,
-      'stage_code':'renameUser_1',
-      'function_call':'rename_user_stage_1(command,person)'
+      'stage_code':'renameUser'
    },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'renameUser_2',
-      'function_call':'rename_user_stage_2(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'renameUser_3',
-      'function_call':'rename_user_stage_3(command,person)'
-   },
-
 
    #Conversation: list admin users
    {
       'command_pattern_check':'command == "/listadmins"',
-      'is_first':True,
-      'stage_code':'listAdmins_1',
-      'function_call':'list_admin_users_stage_1(command,person)'
+      'stage_code':'listAdmins'
    },
 
    #Conversation: list score manager users
    {
       'command_pattern_check':'command == "/listscoremanagers"',
-      'is_first':True,
-      'stage_code':'listScoreManagers_1',
-      'function_call':'list_score_manager_users_stage_1(command,person)'
+      'stage_code':'listScoreManagers'
    },
 
    #Conversation: set user as admin
    {
       'command_pattern_check':'command == "/setadmin"',
-      'is_first':True,
-      'stage_code':'setAdmin_1',
-      'function_call':'set_admin_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'setAdmin_2',
-      'function_call':'set_admin_stage_2(command,person)'
+      'stage_code':'setAdmin'
    },
 
    #Conversation: unset admin
    {
       'command_pattern_check':'command == "/unsetadmin"',
-      'is_first':True,
-      'stage_code':'unsetAdmin_1',
-      'function_call':'unset_admin_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'unsetAdmin_2',
-      'function_call':'unset_admin_stage_2(command,person)'
+      'stage_code':'unsetAdmin'
    },
 
    #Conversation: set user as score manager
    {
       'command_pattern_check':'command == "/setscoremanager"',
-      'is_first':True,
-      'stage_code':'setScoreManager_1',
-      'function_call':'set_score_manager_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'setScoreManager_2',
-      'function_call':'set_score_manager_stage_2(command,person)'
+      'stage_code':'setScoreManager'
    },
 
    #Conversation: unset score manager
    {
       'command_pattern_check':'command == "/unsetscoremanager"',
-      'is_first':True,
-      'stage_code':'unsetScoreManager_1',
-      'function_call':'unset_score_manager_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'unsetScoreManager_2',
-      'function_call':'unset_score_manager_stage_2(command,person)'
+      'stage_code':'unsetScoreManager'
    },
 
    #Conversation: delete user
    {
       'command_pattern_check':'command == "/deleteuser"',
-      'is_first':True,
-      'stage_code':'deleteUser_1',
-      'function_call':'delete_user_stage_1(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'deleteUser_2',
-      'function_call':'delete_user_stage_2(command,person)'
+      'stage_code':'deleteUser'
    },
 
    #Conversation: List Admin functions
    {
       'command_pattern_check':'command == "/adminmenu"',
-      'is_first':True,
-      'stage_code':'listAdminFunctions_1',
-      'function_call':'list_admin_functions_stage_1(command,person)'
+      'stage_code':'listAdminFunctions'
    },
 
     #Conversation: List Score Manager functions
    {
       'command_pattern_check':'command == "/scoremgrmenu"',
-      'is_first':True,
-      'stage_code':'listScoreManagerFunctions_1',
-      'function_call':'list_score_manager_functions_stage_1(command,person)'
+      'stage_code':'listScoreManagerFunctions'
    },
    
    #Conversation: Announcement
    {
       'command_pattern_check':'command == "/announcement"',
-      'is_first':True,
-      'stage_code':'announcement_1',
-      'function_call':'announcement_stage_1(command,person)'
+      'stage_code':'announcement'
    },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'announcement_2',
-      'function_call':'announcement_stage_2(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'announcement_3',
-      'function_call':'announcement_stage_3(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'announcement_4',
-      'function_call':'announcement_stage_4(command,person)'
-   },
-   {
-      'command_pattern_check':None,
-      'is_first':False,
-      'stage_code':'announcement_5',
-      'function_call':'announcement_stage_5(command,person)'
-   }
+
 
    #Conversation: upload score???
 ]
+

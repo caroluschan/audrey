@@ -2,7 +2,7 @@ from users.models import *
 from stages.views import *
 from stages.models import *
 
-def list_score_manager_functions_stage_1(command,person):
+def listScoreManagerFunctions_1(command,person):
 	if isScoreManager(person):
 		functions = []
 		functions.append('List Score Manager:/listscoremanagers\n')
