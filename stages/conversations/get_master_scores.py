@@ -63,7 +63,7 @@ def listScores_2(command, person):
 			else:
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
-				message = '====' + command[1:] + '劃'.encode('utf-8') +'====\n\n'
+				message = '====' + command[2:] + '劃'.encode('utf-8') +'====\n\n'
 				indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 				for index in indexs:
 					message += index.index + '  /' + index.identifier +'\n'
