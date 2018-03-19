@@ -113,6 +113,10 @@ def listScores_4(command, person):
 		elif command[1:] == 'No':
 			person.sendText('I hope you have found the hymn you need :)')
 			person.stageEnd()
+		elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
+				person.stageDown()
+				person.stageDown()
+				listScores_2(command,person)
 		else:
 			person.sendText("Sorry, I do not understand")
 			person.stageEnd()
