@@ -173,6 +173,12 @@ STAGES= [
       'stage_code':'listScores_3',
       'function_call':'get_master_scores_stage_3(command,person)'
    },
+   {
+      'command_pattern_check':None,
+      'is_first':False,
+      'stage_code':'listScores_4',
+      'function_call':'get_master_scores_stage_4(command,person)'
+   },
 
    #Conversation: get score by code
    {

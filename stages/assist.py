@@ -1,5 +1,7 @@
 import string
 import random
+import os
+from django.conf import settings
 from stages.models import *
 from users.models import *
 
@@ -70,6 +72,30 @@ def sendTextToScoreManagersNotAdmin(message):
 def sendTextToAll(message):
 	for person in Person.objects.all():
 			person.sendText(message)
+
+
+
+
+def isEnglish(s):
+	try:
+		s.encode(encoding='utf-8').decode('ascii')
+	except UnicodeDecodeError:
+		return False
+	else:
+		return True
+
+def isDigit(s):
+	numbers = ['1','2','3','4','5','6','7','8','9','0']
+	return True if s in numbers else False
+
+def strokeChecking(s):
+	strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
+	for stroke in strokes:
+		with open(settings.BASE_DIR+'/stroke/'+stroke, 'r') as f:
+			data = f.read()
+			if s in data:
+				return stroke
+	return None
 
 
 

@@ -1,8 +1,6 @@
 import os
 import sys
 import json
-import requests
-import cookielib
 from stages.assist import *
 from stages.models import *
 from django.conf import settings
