@@ -59,7 +59,7 @@ def get_master_scores_stage_2(command, person):
 		if command[:2] != '/s':
 			get_master_scores_stage_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
 		else:
-			message += '====' + command[1:] + ' Strokes====\n\n'
+			message = '====' + command[1:] + ' Strokes====\n\n'
 			indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 			for index in indexs:
 				message += index.index + '  /' + index.identifier +'\n'
