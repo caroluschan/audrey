@@ -63,7 +63,7 @@ def announcement_stage_5(command, person):
 			sendTextToAll(message)
 		elif tmp['audiences'] == 'Admin':
 			sendTextToAdmins(message)
-		person.sendText('You announcement has been made')
+		person.sendText('Your announcement has been made')
 		person.stageEnd()
 		person.popStorage('announcement')
 	elif command[1:] == 'cancel':
