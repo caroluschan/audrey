@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from stages.models import *
 from users.models import *
 from stages.assist import *
