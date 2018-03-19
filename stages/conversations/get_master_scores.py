@@ -31,9 +31,9 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 
 		message += '------Alphabet------\n\n'
 		line = 0
-		letters = Index.objects.filter(language='en').values()
+		letters = Index.objects.filter(language='en').values('index')
 		for letter in letters:
-			message += '/' + letter + '  '
+			message += '/' + letter[index] + '  '
 			line += 1
 			if line == 5:
 				message += '\n\n'
@@ -43,9 +43,9 @@ def get_master_scores_stage_1(command, person): #command: /listscores | stage_co
 
 		message += '------Others------\n\n'
 		line = 0
-		letters = Index.objects.filter(language='others').values()
+		letters = Index.objects.filter(language='others').values('index')
 		for letter in letters:
-			message += '/' + letter + '  '
+			message += '/' + letter[index] + '  '
 			line += 1
 			if line == 5:
 				message += '\n\n'
