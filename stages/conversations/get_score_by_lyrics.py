@@ -28,7 +28,7 @@ def scoreByLyrics_2(command, person):
 		matches = []
 		if searchResult:
 			for x in range(0,len(searchResult)):
-				results.append(searchResult[x].name[searchResult[x].name.find('【')+1:searchResult[x].name.find('】')] if searchResult[x].name.find('【') == -1 else searchResult[x].name)
+				results.append(searchResult[x].name[searchResult[x].name.find('【')+1:searchResult[x].name.find('】')] if searchResult[x].name.find('【') != -1 else searchResult[x].name)
 			print(results)
 			for result in results:
 				directCheck = Scores.objects.filter(file_path__contains=result)
