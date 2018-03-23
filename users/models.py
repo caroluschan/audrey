@@ -47,6 +47,11 @@ class Person(models.Model):
 		self.stage_code = None
 		self.save()
 
+	def getStageCode(self):
+		pattern = re.compile('_')
+		cutter = pattern.search(self.stage_code).span()[1]
+		return self.stage_code[:cutter-len(self.stage_code)-1]
+
 	###################
 	####User Config####
 	###################

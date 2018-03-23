@@ -255,6 +255,10 @@ STAGES= [
    },
 
 
-   #Conversation: upload score???
+   #Conversation: upload score
+    {
+      'command_pattern_check':'command == "/uploadscore"',
+      'stage_code':'uploadScore'
+    }
 ]
 

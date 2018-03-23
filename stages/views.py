@@ -81,3 +81,4 @@ from conversations.list_score_manager_functions import *
 from conversations.announcement import *
 
 #Conversation: upload score???
+from conversations.upload_score import *
