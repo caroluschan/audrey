@@ -4,6 +4,9 @@ from stages.assist import *
 
 def cancel_1(command, person): #command: /approve[telegram_id] | stage_code: approve_1 | trigger: command[:8] == "/approve"
 	if isApproved(person):
-		person.popStorage(person.getStageCode())
+		tmp = person.getStorage()
+		stageCode = person.getStageCode()
+		if stageCode in tmp:
+			person.popStorage(stageCode)
 		person.stageEnd()
 		person.sendText('Your request has been cancelled')
