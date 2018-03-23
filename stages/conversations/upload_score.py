@@ -31,7 +31,7 @@ def uploadScore_3(command, person):
 	tmp = person.getStorage('uploadScore')
 	tmp['file_id'] = command['file_id']
 	person.setStorage('uploadScore', tmp)
-	person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping /upload')
+	person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping /upload\n\n/cancel')
 
 def uploadScore_4(command, person):
 	if command == '/upload':
