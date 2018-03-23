@@ -41,7 +41,7 @@ def uploadScore_4(command, person):
 		file = urllib.URLopener()
 		file.retrieve('https://api.telegram.org/file/bot'+settings.BOT_TOKEN+'/'+result['file_path'], settings.BASE_DIR+'/scores/'+tmp['hymn_name']+'.pdf')
 		call_command('refreshScores')
-		person.sendText('Score of ' + tmp['hymn_name'] + ' has been uploaded')
+		sendTextToScoreManagers('Score of ' + tmp['hymn_name'] + ' has been uploaded by '+ person.user_name)
 		person.popStorage('uploadScore')
 		person.stageEnd()
 	else:
