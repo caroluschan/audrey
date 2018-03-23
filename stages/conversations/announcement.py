@@ -6,10 +6,10 @@ def announcement_1(command, person):
 	if isAdmin(person):
 		person.updateUserProgress('announcement_1')
 		person.stageUp()
-		person.sendText('Who are the audiences?\n\n/Public        /Admin\n\n/cancel')
+		person.sendText('Who are the audiences?\n\n/Public    /Admin    /ScoreManager\n\n/cancel')
 
 def announcement_2(command, person):
-	if command[1:] == 'Public' or command[1:] == 'Admin':
+	if command[1:] == 'Public' or command[1:] == 'Admin' or command[1:] == 'ScoreManager':
 		person.setStorage('announcement',{'audiences':command[1:]})
 		person.stageUp()
 		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
@@ -52,17 +52,25 @@ def announcement_5(command, person):
 	if command[1:] == 'send':
 		tmp = person.getStorage('announcement')
 		message = ''
+
 		if tmp['audiences'] == 'Public':
 			message += '==Public Announcement==\n\n'
 		elif tmp['audiences'] == 'Admin':
 			message += '==Admin Internal Announcement==\n\n'
+		elif tmp['audiences'] == 'ScoreManager':
+			message += '==Score Manager Internal Announcement==\n\n'
+
 		message += tmp['message']
+
 		if tmp['named']:
 			message += '\n\n' + person.user_name
 		if tmp['audiences'] == 'Public':
 			sendTextToAll(message)
 		elif tmp['audiences'] == 'Admin':
 			sendTextToAdmins(message)
+		elif tmp['audiences'] == 'ScoreManager':
+			sendTextToScoreManagers(message)
+			
 		person.sendText('Your announcement has been made')
 		person.stageEnd()
 		person.popStorage('announcement')

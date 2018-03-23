@@ -49,7 +49,10 @@ def identifyStage(command):
 
 def executeStage(stage_code, command, person):
 	if stage_code:
-		exec(stage_code+'(command, person)')
+		if command != '/cancel':
+			exec(stage_code+'(command, person)')
+		else:
+			exec('cancel_1(command, person)')
 	else: 
 		person.sendText("Sorry, I do not understand") #natural language mount point 2
 
