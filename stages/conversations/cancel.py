@@ -6,7 +6,7 @@ def cancel_1(command, person): #command: /approve[telegram_id] | stage_code: app
 	if isApproved(person):
 		tmp = person.getStorage()
 		stageCode = person.getStageCode()
-		if stageCode in tmp:
+		if stageCode is not None and stageCode in tmp:
 			person.popStorage(stageCode)
 		person.stageEnd()
 		person.sendText('Your request has been cancelled')
