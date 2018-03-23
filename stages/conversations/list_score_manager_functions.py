@@ -6,6 +6,7 @@ def listScoreManagerFunctions_1(command,person):
 	if isScoreManager(person):
 		functions = []
 		functions.append('List Score Manager:/listscoremanagers\n')
+		functions.append('Upload Score:/uploadscore\n')
 
 		message = '===Score Manager Menu===\n\n'
 
