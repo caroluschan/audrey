@@ -14,7 +14,7 @@ def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: sco
 	if isApproved(person):
 		person.updateUserProgress('scoreByLyrics_1')
 		person.stageUp()
-		person.sendText(translate('LYRICS', person.lang))
+		person.sendText(translate('TELL_LYRICS', person.lang))
 
 
 def scoreByLyrics_2(command, person):
