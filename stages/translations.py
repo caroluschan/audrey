@@ -21,7 +21,7 @@ translations = {
 
 	"LIST_OF_SCORE":{
 		"en": 'List of Scores for _index_',
-		"cn": '_index_字頭的譜'
+		"cn": '_index_字頭的詩歌'
 	},
 
 	"ANOTHER_LETTER" :{
@@ -93,6 +93,18 @@ translations = {
 	"CHINESE": {
 		"en": "Chinese",
 		"cn": "中文"
+	},
+
+	#get score by code
+
+	"FOUND_DOC": {
+		"en": "Here it is my dear :)",
+		"cn": "找到了 :)"
+	},
+
+	"NOT_FOUND_DOC"; {
+		"en": 'I\'m sorry :( We do not have score with this code.',
+		"cn": '對不起 :( 我找不到有這個編號的詩歌譜'
 	}
 
 

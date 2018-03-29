@@ -8,6 +8,6 @@ def songCode_1(command,person): #command: /songcode[code] | stage_code: songcode
 	if isApproved(person):
 		file = Scores.objects.filter(identifier=command[9:])
 		if file:
-			person.sendDocument(settings.BASE_DIR+'/scores/'+file[0].file_path, "Here it is my dear :)")
+			person.sendDocument(settings.BASE_DIR+'/scores/'+file[0].file_path, translate('FOUND_DOC', person.lang))
 		else:
-			person.sendMessage('I\'m sorry :( We do not have score with this code.')
+			person.sendMessage(translate('NOT_FOUND_DOC', person.lang))
