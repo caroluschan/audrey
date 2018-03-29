@@ -19,6 +19,7 @@ class Person(models.Model):
 	is_approved = models.NullBooleanField()
 	is_score_manager = models.BooleanField(default=False)
 	stage_code = models.CharField(max_length=200, null=True, blank=True)
+	lang = models.CharField(max_length=200, default='cn')
 	storage = models.CharField(max_length=200, null=True, blank=True)
 
 	bot = telepot.Bot(settings.BOT_TOKEN)
