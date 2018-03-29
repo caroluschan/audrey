@@ -11,4 +11,4 @@ def cancel_1(command, person): #command: /approve[telegram_id] | stage_code: app
 		if stageCode is not None and stageCode in tmp:
 			person.popStorage(stageCode)
 		person.stageEnd()
-		person.sendText(translate('Your request has been cancelled', person.lang)
+		person.sendText(translate('Your request has been cancelled', person.lang))
