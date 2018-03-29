@@ -1,9 +1,11 @@
 import string
 import random
 import os
+import re
 from django.conf import settings
 from stages.models import *
 from users.models import *
+from stages.translations import *
 
 #######################
 ####Assist Function####
@@ -96,6 +98,19 @@ def strokeChecking(s):
 			if s in data:
 				return stroke
 	return None
+
+
+def translate(s, lang='cn', var={}):
+	result = translations[s][lang]
+	for k, v in var:
+		tmp = re.split(k, result)
+		construct = ''
+		for x in range(0,len(tmp)-1):
+			construct += tmp[x]
+			construct += v
+		construct += tmp[len(tmp)-1]
+		result = construct
+	return result
 
 
 
