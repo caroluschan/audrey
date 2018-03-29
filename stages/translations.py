@@ -25,7 +25,7 @@ translations = {
 	},
 
 	"ANOTHER_LETTER" :{
-		"en": 'Search by another letter?\n/Yes        /No'
+		"en": 'Search by another letter?\n/Yes        /No',
 		"cn": '搜索另一個字頭嗎?\n/是        /否',
 	}
 
