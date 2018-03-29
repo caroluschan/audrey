@@ -11,11 +11,11 @@ def scoreByName_1(command, person): #command: /scorebyname | stage_code: scoreBy
 	if isApproved(person):
 		person.updateUserProgress('scoreByName_1')
 		person.stageUp()
-		person.sendText("Please tell me the name of the song.")
+		person.sendText(translate('TELL_NAME', person.lang))
 
 def scoreByName_2(command, person):
 	if isApproved(person):
-		person.sendText("OK let me go find it in the library. May take a while")
+		person.sendText(translate('FETCH_SONG', person.lang))
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
 		matches = []
@@ -31,11 +31,11 @@ def scoreByName_2(command, person):
 				matches.append(score)
 		message = ''
 		if len(matches) > 0:
-			message += 'I think these hymns are the ones you are looking for: \n\n'
+			message += translate('I_THINK_THESE_ARE', person.lang)
 			for score in matches:
 				if score.file_path[:-4] not in message:
-					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
+					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
 			person.sendText(message)
 		else:
-			person.sendText('I am sorry :( I cannot find a hymn with this name')
+			person.sendText( translate('NOT_FOUND_DOC_NAME', person.lang))
 		person.stageEnd()

@@ -102,10 +102,31 @@ translations = {
 		"cn": "找到了 :)"
 	},
 
-	"NOT_FOUND_DOC": {
+	"NOT_FOUND_DOC_CODE": {
 		"en": 'I\'m sorry :( We do not have score with this code.',
 		"cn": '對不起 :(\n我找不到有這個編號的詩歌譜'
-	}
+	},
 
+	#get score by name
+
+	"TELL_NAME":{
+		"en": "Please tell me the name or part of the name of the song.",
+		"cn": "請告訴我詩歌的全名或部分名字。"
+	},
+
+	"FETCH_SONG": {
+		"en": "OK let me go find it in the library. May take a while",
+		"cn": "OK，讓我找找，可能會需要一段時間。"
+	},
+
+	"I_THINK_THESE_ARE": {
+		"en": 'I think these hymns are the ones you are looking for: \n\n',
+		"cn": '是這些詩歌嗎?\n\n'
+	},
+
+	"NOT_FOUND_DOC_NAME": {
+		"en": 'I\'m sorry :( We do not have score with this name.',
+		"cn": '對不起 :(\n我找不到有關的詩歌譜'
+	},
 
 }
