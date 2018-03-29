@@ -14,7 +14,7 @@ def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: sco
 	if isApproved(person):
 		person.updateUserProgress('scoreByLyrics_1')
 		person.stageUp()
-		person.sendText(translate('TELL_LYRICS', person.lang))
+		person.sendText(translate('LYRICS', person.lang))
 
 
 def scoreByLyrics_2(command, person):
@@ -48,8 +48,9 @@ def scoreByLyrics_2(command, person):
 		message = ''
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
-			if score.file_path[:-4] not in message:
-				message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
+			for score in matches:
+				if score.file_path[:-4] not in message:
+					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
 			person.sendText(message)
 		else:
 			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang))
