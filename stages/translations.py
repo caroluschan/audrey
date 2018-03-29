@@ -104,7 +104,7 @@ translations = {
 
 	"NOT_FOUND_DOC": {
 		"en": 'I\'m sorry :( We do not have score with this code.',
-		"cn": '對不起 :( 我找不到有這個編號的詩歌譜'
+		"cn": '對不起 :(\n我找不到有這個編號的詩歌譜'
 	}
 
 
