@@ -48,8 +48,8 @@ def scoreByLyrics_2(command, person):
 		message = ''
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
-				if score.file_path[:-4] not in message:
-					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
+			if score.file_path[:-4] not in message:
+				message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
 			person.sendText(message)
 		else:
 			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang))
