@@ -14,12 +14,12 @@ def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: sco
 	if isApproved(person):
 		person.updateUserProgress('scoreByLyrics_1')
 		person.stageUp()
-		person.sendText("Please tell me the lyrics.")
+		person.sendText(translate('LYRICS', person.lang))
 
 
 def scoreByLyrics_2(command, person):
 	if isApproved(person):
-		person.sendText("OK let me go find it in the library. May take a while")
+		person.sendText(translate('FETCH_SONG', person.lang))
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
 		keyword = command + ' site:christianstudy.com/data/hymns/text'
@@ -47,11 +47,10 @@ def scoreByLyrics_2(command, person):
 								matches.append(score)
 		message = ''
 		if len(matches) > 0:
-			message += 'I think these hymns are the ones you are looking for: \n\n'
-			for score in matches:
+			message += translate('I_THINK_THESE_ARE', person.lang)
 				if score.file_path[:-4] not in message:
 					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
 			person.sendText(message)
 		else:
-			person.sendText('I am sorry :( I cannot find a hymn with this lyrics')
+			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang))
 		person.stageEnd()

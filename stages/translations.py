@@ -110,7 +110,7 @@ translations = {
 	#get score by name
 
 	"TELL_NAME":{
-		"en": "Please tell me the name or part of the name of the song.",
+		"en": "Please tell me the name or part of the name of the hymn.",
 		"cn": "請告訴我詩歌的全名或部分名字。"
 	},
 
@@ -129,4 +129,10 @@ translations = {
 		"cn": '對不起 :(\n我找不到有關的詩歌譜'
 	},
 
+	#get score by lyrics
+
+	"TELL_LYRICS":{
+		"en": "Please tell me the name or part of the lyrics of the hymn.",
+		"cn": "請告訴我詩歌的歌詞。"
+	},
 }
