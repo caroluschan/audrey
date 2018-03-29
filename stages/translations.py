@@ -5,7 +5,7 @@ translations = {
 	"NOT_UNDERSTAND": {
 		"en": "Sorry, I do not understand",
 		"cn": "對不起，我不明白"
-	}
+	},
 
 	#cancel
 	"CANCEL": {
