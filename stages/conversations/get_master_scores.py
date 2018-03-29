@@ -110,7 +110,7 @@ def listScores_4(command, person):
 			person.stageDown()
 			person.stageDown()
 			listScores_3(command, person)
-		elif command[1:] == 'No:
+		elif command[1:] == 'No':
 			person.sendText(translate('FOUND_SCORE', person.lang))
 			person.stageEnd()
 		elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
