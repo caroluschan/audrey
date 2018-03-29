@@ -36,6 +36,9 @@ from conversations.get_score_by_lyrics import *
 #Conversation: cancel
 from conversations.cancel import *
 
+#Conversation: change language
+from conversations.change_language import *
+
 
 #########################
 ###Admin User Function###
