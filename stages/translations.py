@@ -35,8 +35,8 @@ translations = {
 	},
 
 	"STROKE": {
-		"en": "Stroke",
-		"cn": "劃"
+		"en": "_num_ strokes",
+		"cn": "_num_劃"
 	},
 
 	"ALPHABET": {
