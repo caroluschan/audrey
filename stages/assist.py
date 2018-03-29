@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
 import string
 import random
+import sys
 import os
 import re
 from django.conf import settings
@@ -101,6 +103,8 @@ def strokeChecking(s):
 
 
 def translate(s, lang='cn', var={}):
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
 	result = translations[s][lang]
 	for k, v in var:
 		tmp = re.split(k, result)
