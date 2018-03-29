@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 translations = {
 	"CANCEL": {
 		"en" : 'Your request has been cancelled',
