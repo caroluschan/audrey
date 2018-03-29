@@ -44,7 +44,7 @@ def handle(request):
 def identifyStage(command):
 	for door in settings.STAGES:
 		if eval(door['command_pattern_check']):
-			return door['stage_code']
+			return door['stage_code']+'_1'
 	return None 
 
 def executeStage(stage_code, command, person):
@@ -57,4 +57,4 @@ def executeStage(stage_code, command, person):
 		person.sendText("Sorry, I do not understand") #natural language mount point 2
 
 def processCommand(command, person):
-	executeStage(person.stage_code if person.stage_code and command != '/cancel' else identifyStage(command)+'_1', command, person)
+	executeStage(person.stage_code if person.stage_code and command != '/cancel' else identifyStage(command), command, person)
