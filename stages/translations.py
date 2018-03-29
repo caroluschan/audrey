@@ -26,7 +26,7 @@ translations = {
 
 	"ANOTHER_LETTER" :{
 		"en": 'Search by another letter?\n/Yes        /No',
-		"cn": '搜索另一個字頭嗎?\n/是        /否',
+		"cn": '搜索另一個字頭嗎?\n是:/Yes        否:/No',
 	},
 
 	"STROKES": {
@@ -65,8 +65,8 @@ translations = {
 	},
 
 	"BACK": {
-		"en": "back",
-		"cn": "返回"
+		"en": "/back",
+		"cn": "返回:/back"
 	},
 
 	"FOUND_SCORE": {

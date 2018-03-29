@@ -67,7 +67,7 @@ def listScores_2(command, person):
 				indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 				for index in indexs:
 					message += index.index + '  /' + index.identifier +'\n'
-				message += '\n/' + translate('BACK', person.lang)
+				message += '\n' + translate('BACK', person.lang)
 				person.sendText(message)
 	except IndexError:
 		person.sendText(translate('NOT_UNDERSTAND', person.lang))
@@ -76,7 +76,7 @@ def listScores_2(command, person):
 def listScores_3(command, person):
 	try:
 		if isApproved(person):
-			if command[1:] == translate('BACK', person.lang):
+			if command == translate('BACK', 'en'):
 				listScores_1(command, person)
 			elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
 				person.stageDown()
@@ -101,7 +101,7 @@ def listScores_3(command, person):
 
 def listScores_4(command, person):
 	if isApproved(person):
-		if command[1:] == translate('YES', person.lang):
+		if command[1:] == 'Yes':
 			listScores_1(command, person)
 		elif command[:9] == '/songcode':
 			songCode_1(command,person)
@@ -110,7 +110,7 @@ def listScores_4(command, person):
 			person.stageDown()
 			person.stageDown()
 			listScores_3(command, person)
-		elif command[1:] == translate('NO', person.lang):
+		elif command[1:] == 'No:
 			person.sendText(translate('FOUND_SCORE', person.lang))
 			person.stageEnd()
 		elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
