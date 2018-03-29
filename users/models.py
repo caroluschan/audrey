@@ -102,6 +102,10 @@ class Person(models.Model):
 	def getStorage(self, key=None):		
 		return self.storageToJson()[key] if key is not None else self.storageToJson()
 
+	def setLang(self, lang):
+		self.lang = lang
+		self.save()
+
 
 	#######################
 	####Outward Message####

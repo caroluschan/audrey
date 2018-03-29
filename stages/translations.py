@@ -72,6 +72,28 @@ translations = {
 	"FOUND_SCORE": {
 		"en": 'I hope you have found the hymn you need :)',
 		"cn": '希望你找到你需要的詩歌，有需要再找我吧 :)'
+	},
+
+	#change language
+	"LANG_MENU": {
+		"en":'Which language would you like to set as preferred?\n\n/English        /Chinese',
+		"cn": '您希望設置為哪種語言?\n\n英語: /English        中文: /Chinese'
+	},
+
+	"SET_LANG": {
+		"en": "Your preferred language has been set as _lang_",
+		"cn": "您的語言已設置為_lang_"
+	},
+
+	"ENGLISH": {
+		"en": "English",
+		"cn": "英語"
+	},
+
+	"CHINESE": {
+		"en": "Chinese",
+		"cn": "中文"
 	}
+
 
 }

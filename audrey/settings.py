@@ -172,6 +172,12 @@ STAGES= [
       'stage_code':'cancel'
    },
 
+   #Conversation: change language
+   {
+      'command_pattern_check':'command == "/changelang"',
+      'stage_code':'changeLang'
+   },
+
     #########################
     ###Admin User Function###
     #########################
