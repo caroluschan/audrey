@@ -17,8 +17,8 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 		person.stageUp()
 		connection.cursor()
 		connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
-		message = 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.\n\n'
-		message += '------'+'筆劃'.encode('utf-8')+'------\n\n'
+		message = translate('MASTER_SCORE_1', person.lang)
+		message += '------'+ translate('STROKES', person.lang).encode('utf-8')+'------\n\n'
 		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
 		line = 0
 		for stroke in strokes:
@@ -30,7 +30,7 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 		if line != 0:
 			message += '\n\n'
 
-		message += '------Alphabet------\n\n'
+		message += '------' + translate('ALPHABET', person.lang).encode('utf-8') + '------\n\n'
 		line = 0
 		letters = Index.objects.filter(language='en').values('index')
 		for letter in letters:
@@ -42,7 +42,7 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 		if line != 0:
 			message += '\n\n'
 
-		message += '------Others------\n\n'
+		message += '------' + translate('OTHERS', person.lang).encode('utf-8') + '------\n\n'
 		line = 0
 		letters = Index.objects.filter(language='others').values('index')
 		for letter in letters:
@@ -63,20 +63,20 @@ def listScores_2(command, person):
 			else:
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
-				message = '====' + command[2:] + '劃'.encode('utf-8') +'====\n\n'
+				message = '====' + command[2:] + translate('STROKE', person.lang).encode('utf-8') +'====\n\n'
 				indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
 				for index in indexs:
 					message += index.index + '  /' + index.identifier +'\n'
-				message += '\n/back'
+				message += '\n/' + translate('BACK', person.lang)
 				person.sendText(message)
 	except IndexError:
-		person.sendText("Sorry, I do not understand")
+		person.sendText(translate('NOT_UNDERSTAND', person.lang))
 		person.stageEnd()
 
 def listScores_3(command, person):
 	try:
 		if isApproved(person):
-			if command[1:] == 'back':
+			if command[1:] == translate('BACK', person.lang):
 				listScores_1(command, person)
 			elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
 				person.stageDown()
@@ -88,35 +88,35 @@ def listScores_3(command, person):
 				connection.cursor()
 				connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 				index = Index.objects.filter(identifier=command[1:])[0].index
-				message = '====List of Scores for '+ index +'====\n\n'
+				message = '===='+translate('LIST_OF_SCORE', person.lang,{'_index_': index}).encode('utf-8') +'====\n\n'
 				scores = Scores.objects.filter(index=index).extra(select={'length':'Length(file_path)'}).order_by('length')
 				for score in scores:
-					message += score.file_path[:-4] + '\n' + 'Link: /songcode'+score.identifier + '\n\n'
-				message += '\n\n Search by another letter?\n/Yes        /No'
+					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang)+': /songcode'+score.identifier + '\n\n'
+				message += '\n\n' + translate('ANOTHER_LETTER', person.lang)
 				person.sendText(message)
 				
 	except IndexError:
-		person.sendText("Sorry, I do not understand")
+		person.sendText(translate('NOT_UNDERSTAND', person.lang))
 		person.stageEnd()
 
 def listScores_4(command, person):
 	if isApproved(person):
-		if command[1:] == 'Yes':
+		if command[1:] == translate('YES', person.lang):
 			listScores_1(command, person)
 		elif command[:9] == '/songcode':
 			songCode_1(command,person)
-			person.sendText('Search by another letter?\n/Yes        /No')
+			person.sendText(translate('ANOTHER_LETTER', person.lang))
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()
 			listScores_3(command, person)
-		elif command[1:] == 'No':
-			person.sendText('I hope you have found the hymn you need :)')
+		elif command[1:] == translate('NO', person.lang):
+			person.sendText(translate('FOUND_SCORE', person.lang))
 			person.stageEnd()
 		elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
 				person.stageDown()
 				person.stageDown()
 				listScores_2(command,person)
 		else:
-			person.sendText("Sorry, I do not understand")
+			person.sendText(translate('NOT_UNDERSTAND', person.lang))
 			person.stageEnd()
