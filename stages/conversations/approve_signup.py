@@ -12,5 +12,5 @@ def approve_1(command, person): #command: /approve[telegram_id] | stage_code: ap
 			user.sendText("Your signup is approved! I am now at your service my dear. Please tap the [ / ] button by the left of the send button for my utilities. ")
 			for admin in getAdmins():
 				admin.sendText(person.user_name+" has approved the application of "+user.user_name+".")
-		else
+		else:
 			person.sendText('User has been approved')
