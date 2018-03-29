@@ -135,4 +135,11 @@ translations = {
 		"en": "Please tell me the name or part of the lyrics of the hymn.",
 		"cn": "請告訴我詩歌的歌詞。"
 	},
+
+	#authorization
+
+	"SIGNUP_ALREADY": {
+		"en": "You have signed up already",
+		"cn": "你已經註冊了"
+	}
 }

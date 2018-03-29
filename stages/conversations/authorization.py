@@ -9,7 +9,7 @@ def auth_1(command, person):
 		person.stageUp()
 		person.sendText("Hello! What is your name?")
 	else:
-		person.sendText("You have signed up already")
+		person.sendText(translate("SIGNUP_ALREADY", person.lang))
 		
 def auth_2(command, person): #command: [name] | stage_code: auth_2
 	if Person.objects.filter(user_name=command).count() > 0:
