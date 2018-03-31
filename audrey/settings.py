@@ -134,7 +134,7 @@ STAGES= [
     ##########################462615061:AAHqdSi1rMiMpQ9vEpVn3COOkrnSbHrfWm4
     #Conversation: authorization
    {
-      'command_pattern_check':'command == "/signup"',
+      'command_pattern_check':'command[:7] == "/signup"',
       'stage_code':'auth'
    },
 

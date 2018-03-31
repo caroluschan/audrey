@@ -7,6 +7,38 @@ translations = {
 		"cn": "對不起，我不明白"
 	},
 
+	"PLEASE_SIGNUP": {
+		"en": "Sorry, please signup first before I can serve you.\n\n---Signup link---\nEnglish: /signup_en        Chinese: /signup_cn",
+		"cn": "對不起，請先註冊，然後我才能為您服務。\n\n---註冊連結---\n英語: /signup_en        中文: /signup_cn"
+	},
+
+	#authorization
+	"START": {
+		"en": "Hello there! I am Audrey. Please signup first in order for me to serve you!\n\n---Signup link---\nEnglish: /signup_en        Chinese: /signup_cn",
+		"cn": '你好！我是Audrey。請先註冊以便我為您服務！\n\n---註冊連結---\n英語: /signup_en        中文: /signup_cn'
+	},
+
+	"YOUR_NAME": {
+		"en": "Hello! What is your name?",
+		"cn": "你好，你叫什麼名字？"
+	},
+
+	"DUPLICATED_NAME": {
+		"en": 'I\'m sorry :( This name has been used. Please make up another one.',
+		"cn": '對不起:( 這個名字已被使用，請使用另一個。'
+	},
+
+	"NAME_RECEIVED": {
+		"en": "Nice to meet you, _name_. Your signup is well received. You will be notified when you signup is approved.",
+		"cn": "很高興認識你，_name_。你的申請已經交妥，請等待批核通知。"
+	},
+
+	"NOT_APPROVED_YET": {
+		"en": "_name_, you will be notified when you signup is approved.",
+		"cn": "_name_，請稍候，你將會在申請獲得批准後收到通知。"
+	},
+
+
 	#cancel
 	"CANCEL": {
 		"en" : 'Your request has been cancelled',

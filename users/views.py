@@ -28,13 +28,13 @@ def handle(request):
 	if incomer.count() > 0:
 		processCommand(command, incomer[0])
 	elif command == "/start":
-		bot.sendMessage(telegram_id, "Hello there! I am Audrey the Hymns Manager. Please signup first by tapping /signup in order for me to serve you!")
-	elif command == "/signup":
-		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False,is_score_manager=False, stage_code=None, user_name=None)
+		bot.sendMessage(telegram_id, translate('START','cn'))
+	elif command[:7] == "/signup":
+		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False,is_score_manager=False, stage_code=None, user_name=None, lang=command[:-2])
 		newUser.save()
 		processCommand(command, newUser)
 	else:
-		bot.sendMessage(telegram_id, "Sorry, please signup by tapping /signup first before I can serve you.")
+		bot.sendMessage(telegram_id, translate('PLEASE_SIGNUP', person.lang))
 	return HttpResponse('200')
 
 ###############################
@@ -54,7 +54,7 @@ def executeStage(stage_code, command, person):
 		else:
 			exec('cancel_1(command, person)')
 	else: 
-		person.sendText("Sorry, I do not understand") #natural language mount point 2
+		person.sendText(translate('NOT_UNDERSTAND', person.lang)) #natural language mount point 2
 
 def processCommand(command, person):
 	executeStage(person.stage_code if person.stage_code and command != '/cancel' else identifyStage(command), command, person)
