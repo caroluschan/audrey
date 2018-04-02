@@ -52,8 +52,8 @@ translations = {
 
 	#get master score
 	"MASTER_SCORE_1":{
-		"en": 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.\n\n',
-		"cn": '詩歌很多呢！不如按詩歌名稱的第一個字搜索吧。\n\n'
+		"en": 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.',
+		"cn": '詩歌很多呢！不如按詩歌名稱的第一個字搜索吧。'
 	},
 
 	"LIST_OF_SCORE":{
@@ -157,8 +157,8 @@ translations = {
 	},
 
 	"I_THINK_THESE_ARE": {
-		"en": 'I think these hymns are the ones you are looking for: \n\n',
-		"cn": '是這些詩歌嗎?\n\n'
+		"en": 'I think these hymns are the ones you are looking for:',
+		"cn": '是這些詩歌嗎?'
 	},
 
 	"NOT_FOUND_DOC_NAME": {

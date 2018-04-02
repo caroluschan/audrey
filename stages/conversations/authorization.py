@@ -18,7 +18,10 @@ def auth_2(command, person): #command: [name] | stage_code: auth_2
 		person.setName(command)
 		person.stageUp()
 		person.sendText(translate('NAME_RECEIVED', person.lang, {'_name_': command}))
-		sendTextToAdmins(command+" has signed up.\n/approve"+person.telegram_id)
+		functions = []
+		functions.append([InlineKeyboardButton(text='Approve', callback_data="/approve"+person.telegram_id)])
+		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
+		sendTextToAdmins(command+" has signed up.", keyboard)
 
 def auth_3(command, person): #command: ??? | stage_code: auth_3
 	person.sendText(translate('NOT_APPROVED_YET', person.lang, {'_name_': person.user_name}))
