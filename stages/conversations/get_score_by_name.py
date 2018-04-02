@@ -5,6 +5,7 @@ from stages.models import *
 from users.models import *
 from stages.assist import *
 import sys
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 #Conversation: get score by lyrics    
 def scoreByName_1(command, person): #command: /scorebyname | stage_code: scoreByName_1 | trigger: command == "/scorebyname"
@@ -32,10 +33,16 @@ def scoreByName_2(command, person):
 		message = ''
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
+			buttons = []
+			history = []
 			for score in matches:
-				if score.file_path[:-4] not in message:
-					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
-			person.sendText(message)
+				# if score.file_path[:-4] not in message:
+					# message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
+				if score.file_path[:-4] not in history:	
+					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
+					history.append(score.file_path[:-4])
+			keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+			person.sendText(message, keyboard)
 		else:
 			person.sendText( translate('NOT_FOUND_DOC_NAME', person.lang))
 		person.stageEnd()

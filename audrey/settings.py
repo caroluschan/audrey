@@ -121,7 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-BOT_TOKEN = str('462615061:AAHqdSi1rMiMpQ9vEpVn3COOkrnSbHrfWm4')
+DEBUG_BOT_MODE = False
+
+BOT_TOKEN = str('551892984:AAHJFnQhDkwKi8xnrMh_KpDaGkyLSwqD7b4') if DEBUG_BOT_MODE else str('462615061:AAHqdSi1rMiMpQ9vEpVn3COOkrnSbHrfWm4')
 
 #bot = telepot.Bot(BOT_TOKEN)
 

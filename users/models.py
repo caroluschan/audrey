@@ -111,8 +111,8 @@ class Person(models.Model):
 	####Outward Message####
 	#######################
 
-	def sendText(self, message):
-		self.bot.sendMessage(self.telegram_id, message)
+	def sendText(self, message, reply_markup=None):
+		self.bot.sendMessage(self.telegram_id, message, reply_markup=reply_markup)
 
 	def sendDocument(self, document, message=None):
 		print('send doc')
