@@ -35,6 +35,8 @@ def handle(request):
 		processCommand(command, newUser)
 	else:
 		bot.sendMessage(telegram_id, translate('PLEASE_SIGNUP', person.lang))
+	if "query_id" in data:
+		bot.answerCallbackQuery(data["query_id"], text='200')
 	return HttpResponse('200')
 
 ###############################
