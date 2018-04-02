@@ -33,19 +33,19 @@ def scoreByLyrics_2(command, person):
 			print(results)
 			for result in results:
 				directCheck = Scores.objects.filter(file_path__contains=result)
-				if directCheck.count() > 0:
-					matches.append(directCheck[0])
-				else:
-					words = result.replace('.',' ').replace(',',' ')
-					if ' ' in result:
-						words = result.split(' ')
-					scoreCheck = Scores.objects
-					for word in words:
-						if word != '':
-							scoreCheck = scoreCheck.filter(file_path__contains=word)
-					if scoreCheck:
-						for score in scoreCheck:
-								matches.append(score)
+				# if directCheck.count() > 0:
+				# 	matches.append(directCheck[0])
+				# else:
+				words = result.replace('.',' ').replace(',',' ')
+				if ' ' in result:
+					words = result.split(' ')
+				scoreCheck = Scores.objects
+				for word in words:
+					if word != '':
+						scoreCheck = scoreCheck.filter(file_path__contains=word)
+				if scoreCheck:
+					for score in scoreCheck:
+							matches.append(score)
 		message = ''
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
