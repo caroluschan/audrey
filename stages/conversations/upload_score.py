@@ -31,7 +31,12 @@ def uploadScore_3(command, person):
 	tmp = person.getStorage('uploadScore')
 	tmp['file_id'] = command['file_id']
 	person.setStorage('uploadScore', tmp)
-	person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping /upload\n\n/cancel')
+	functions = []
+	functions.append([InlineKeyboardButton(text='Upload', callback_data='/upload')])
+	functions.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')])
+
+	keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
+	person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping Upload', keyboard)
 
 def uploadScore_4(command, person):
 	if command == '/upload':
