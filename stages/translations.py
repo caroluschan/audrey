@@ -113,8 +113,8 @@ translations = {
 
 	#change language
 	"LANG_MENU": {
-		"en":'Which language would you like to set as preferred?\n\n/English        /Chinese',
-		"cn": '您希望設置為哪種語言?\n\n英語: /English        中文: /Chinese'
+		"en":'Which language would you like to set as preferred?',
+		"cn": '您希望設置為哪種語言?'
 	},
 
 	"SET_LANG": {
