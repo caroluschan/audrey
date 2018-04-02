@@ -10,6 +10,7 @@ import requests
 import urllib
 import json
 import sys
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 def uploadScore_1(command, person):
 	if isScoreManager(person):
