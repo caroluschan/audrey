@@ -7,6 +7,7 @@ from django.conf import settings
 from django.db import connection
 import os
 import sys
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 #Conversation: get master list of scores
 def listScores_1(command, person): #command: /listscores | stage_code: listScores_1 | trigger: command == "/listscores"
@@ -18,40 +19,43 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 		connection.cursor()
 		connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 		message = translate('MASTER_SCORE_1', person.lang)
-		message += '------'+ translate('STROKES', person.lang).encode('utf-8')+'------\n\n'
 		strokes = sorted(os.listdir(settings.BASE_DIR+'/stroke'))
 		line = 0
+		buttons = []
+		buttonline = []
 		for stroke in strokes:
-			message += '/s' + stroke + '  '
+			buttonline.append(InlineKeyboardButton(text=translate('STROKE', person.lang, {'_num_': stroke}).encode('utf-8'), callback_data='/s' + stroke))
 			line += 1
-			if line == 6:
-				message += '\n\n'
+			if line == 4:
+				buttons.append(buttonline)
+				buttonline = []
 				line = 0
-		if line != 0:
-			message += '\n\n'
 
-		message += '------' + translate('ALPHABET', person.lang).encode('utf-8') + '------\n\n'
-		line = 0
 		letters = Index.objects.filter(language='en').values('index')
 		for letter in letters:
-			message += '/' + letter['index'] + '  '
+			# message += '/' + letter['index']
+			buttonline.append(InlineKeyboardButton(text=letter['index'], callback_data='/' + letter['index']))
 			line += 1
-			if line == 10:
-				message += '\n\n'
+			if line == 4:
+				buttons.append(buttonline)
+				buttonline = []
 				line = 0
-		if line != 0:
-			message += '\n\n'
 
-		message += '------' + translate('OTHERS', person.lang).encode('utf-8') + '------\n\n'
-		line = 0
 		letters = Index.objects.filter(language='others').values('index')
 		for letter in letters:
-			message += '/' + letter['index'] + '  '
+			# message += '/' + letter['index'] + '  '
+			buttonline.append(InlineKeyboardButton(text=letter['index'], callback_data='/' + letter['index']))
 			line += 1
-			if line == 6:
-				message += '\n\n'
+			if line == 4:
+				buttons.append(buttonline)
+				buttonline = []
 				line = 0
-		person.sendText(message)
+		if line != 0:
+			buttons.append(buttonline)
+			buttonline = []
+			line = 0
+		keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+		person.sendText(message, keyboard)
 
 
 def listScores_2(command, person):
@@ -63,12 +67,25 @@ def listScores_2(command, person):
 			else:
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
-				message = '====' + translate('STROKE', person.lang, {'_num_': command[2:]}).encode('utf-8') +'====\n\n'
+				message = "========"+translate('STROKE', person.lang, {'_num_': command[2:]}).encode('utf-8')+"========"
 				indexs = Index.objects.filter(language='cn').filter(stroke=command[2:])
+				buttons = []
+				buttonline = []
+				line = 0
 				for index in indexs:
-					message += index.index + '  /' + index.identifier +'\n'
-				message += '\n' + translate('BACK', person.lang)
-				person.sendText(message)
+					buttonline.append(InlineKeyboardButton(text=index.index, callback_data='/' + index.identifier))
+					line += 1
+					if line == 4:
+						buttons.append(buttonline)
+						buttonline = []
+						line = 0
+				if line != 0:
+					buttons.append(buttonline)
+					buttonline = []
+					line = 0
+				buttons.append([InlineKeyboardButton(text=translate('BACK', person.lang), callback_data='/back')])
+				keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+				person.sendText(message, keyboard)
 	except IndexError:
 		person.sendText(translate('NOT_UNDERSTAND', person.lang))
 		person.stageEnd()
@@ -76,7 +93,7 @@ def listScores_2(command, person):
 def listScores_3(command, person):
 	try:
 		if isApproved(person):
-			if command == translate('BACK', 'en'):
+			if command == '/back':
 				listScores_1(command, person)
 			elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
 				person.stageDown()
@@ -88,13 +105,19 @@ def listScores_3(command, person):
 				connection.cursor()
 				connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 				index = Index.objects.filter(identifier=command[1:])[0].index
-				message = '===='+translate('LIST_OF_SCORE', person.lang,{'_index_': index}).encode('utf-8') +'====\n\n'
+				message = "===="+translate('LIST_OF_SCORE', person.lang,{'_index_': index}).encode('utf-8')+"===="
 				scores = Scores.objects.filter(index=index).extra(select={'length':'Length(file_path)'}).order_by('length')
+				buttons = []
 				for score in scores:
-					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang)+': /songcode'+score.identifier + '\n\n'
-				message += '\n\n' + translate('ANOTHER_LETTER', person.lang)
-				person.sendText(message)
-				
+					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
+				keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+				person.sendText(message, keyboard)
+				message = translate('ANOTHER_LETTER', person.lang)
+				buttons = []
+				buttons.append([InlineKeyboardButton(text=translate('YES', person.lang), callback_data='/Yes'), InlineKeyboardButton(text=translate('NO', person.lang), callback_data='/No')])
+				keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+				person.sendText(message, keyboard)
+
 	except IndexError:
 		person.sendText(translate('NOT_UNDERSTAND', person.lang))
 		person.stageEnd()
@@ -105,7 +128,11 @@ def listScores_4(command, person):
 			listScores_1(command, person)
 		elif command[:9] == '/songcode':
 			songCode_1(command,person)
-			person.sendText(translate('ANOTHER_LETTER', person.lang))
+			message = translate('ANOTHER_LETTER', person.lang)
+			buttons = []
+			buttons.append([InlineKeyboardButton(text=translate('YES', person.lang), callback_data='/Yes'), InlineKeyboardButton(text=translate('NO', person.lang), callback_data='/No')])
+			keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+			person.sendText(message, keyboard)
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()

@@ -36,7 +36,7 @@ def handle(request):
 	else:
 		bot.sendMessage(telegram_id, translate('PLEASE_SIGNUP', person.lang))
 	if "query_id" in data:
-		bot.answerCallbackQuery(data["query_id"], text='200')
+		bot.answerCallbackQuery(data["query_id"], text=' ')
 	return HttpResponse('200')
 
 ###############################
