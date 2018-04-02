@@ -36,8 +36,6 @@ def scoreByName_2(command, person):
 			buttons = []
 			history = []
 			for score in matches:
-				# if score.file_path[:-4] not in message:
-					# message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
 				if score.file_path[:-4] not in history:	
 					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
 					history.append(score.file_path[:-4])

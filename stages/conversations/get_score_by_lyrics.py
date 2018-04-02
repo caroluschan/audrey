@@ -49,9 +49,11 @@ def scoreByLyrics_2(command, person):
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
 			for score in matches:
-				if score.file_path[:-4] not in message:
-					message += score.file_path[:-4] + '\n' + translate('LINK', person.lang) + ': /songcode'+score.identifier + '\n\n'
-			person.sendText(message)
+				if score.file_path[:-4] not in history:	
+					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
+					history.append(score.file_path[:-4])
+			keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
+			person.sendText(message, keyboard)
 		else:
 			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang))
 		person.stageEnd()
