@@ -8,14 +8,19 @@ translations = {
 	},
 
 	"PLEASE_SIGNUP": {
-		"en": "Sorry, please signup first before I can serve you.\n\n---Signup link---\nEnglish: /signup_en        Chinese: /signup_cn",
-		"cn": "對不起，請先註冊，然後我才能為您服務。\n\n---註冊連結---\n英語: /signup_en        中文: /signup_cn"
+		"en": "Sorry, please signup first before I can serve you.",
+		"cn": "對不起，請先註冊，然後我才能為您服務。"
+	},
+
+	"SIGNUP": {
+		"en": "SIGNUP",
+		"cn": "註冊"
 	},
 
 	#authorization
 	"START": {
-		"en": "Hello there! I am Audrey. Please signup first in order for me to serve you!\n\n---Signup link---\nEnglish: /signup_en        Chinese: /signup_cn",
-		"cn": '你好！我是Audrey。請先註冊以便我為您服務！\n\n---註冊連結---\n英語: /signup_en        中文: /signup_cn'
+		"en": "Hello there! I am Audrey. Please signup first in order for me to serve you!",
+		"cn": '你好！我是Audrey。請先註冊以便我為您服務！'
 	},
 
 	"YOUR_NAME": {

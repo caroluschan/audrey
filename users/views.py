@@ -9,6 +9,8 @@ from stages.views import *
 from stages.models import *
 from django.conf import settings
 import json
+import telepot
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 # Create your views here.
 
 bot = telepot.Bot(settings.BOT_TOKEN)
@@ -28,13 +30,22 @@ def handle(request):
 	if incomer.count() > 0:
 		processCommand(command, incomer[0])
 	elif command == "/start":
-		bot.sendMessage(telegram_id, translate('START','cn'))
+		functions = []
+		functions.append([InlineKeyboardButton(text=translate('SIGNUP','en'), callback_data='/signup_en')])
+		functions.append([InlineKeyboardButton(text=translate('SIGNUP','cn'), callback_data='/signup_cn')])
+		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
+		bot.sendMessage(telegram_id, translate('START','cn'), reply_markup=keyboard)
 	elif command[:7] == "/signup":
-		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False,is_score_manager=False, stage_code=None, user_name=None, lang=command[:-2])
+		newUser = Person(telegram_id=telegram_id, is_admin=False, is_approved=False,is_score_manager=False, stage_code=None, user_name=None, lang=command[-2:])
 		newUser.save()
 		processCommand(command, newUser)
 	else:
-		bot.sendMessage(telegram_id, translate('PLEASE_SIGNUP', person.lang))
+		functions = []
+		functions.append([InlineKeyboardButton(text=translate('SIGNUP','en'), callback_data='/signup_en')])
+		functions.append([InlineKeyboardButton(text=translate('SIGNUP','cn'), callback_data='/signup_cn')])
+		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
+		bot.sendMessage(telegram_id, translate('PLEASE_SIGNUP', 'cn'), reply_markup=keyboard)
+
 	if "query_id" in data:
 		bot.answerCallbackQuery(data["query_id"], text=' ')
 	return HttpResponse('200')
