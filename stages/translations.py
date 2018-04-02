@@ -174,8 +174,8 @@ translations = {
 	#get score by lyrics
 
 	"TELL_LYRICS":{
-		"en": "Please tell me the name or part of the lyrics of the hymn.",
-		"cn": "請告訴我詩歌的歌詞。"
+		"en": "Please tell me the name or part of the lyrics of the hymn. The longer the lyrics, the more accurate the search will be.",
+		"cn": "請告訴我詩歌的歌詞。你提供的歌詞越長，搜索的精確度越高喲!"
 	},
 
 	#authorization
