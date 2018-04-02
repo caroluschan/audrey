@@ -72,7 +72,7 @@ translations = {
 	},
 
 	"STROKE": {
-		"en": "_num_ strokes",
+		"en": "_num_劃",
 		"cn": "_num_劃"
 	},
 
