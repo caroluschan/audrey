@@ -48,6 +48,8 @@ def scoreByLyrics_2(command, person):
 		message = ''
 		if len(matches) > 0:
 			message += translate('I_THINK_THESE_ARE', person.lang)
+			buttons = []
+			history = []
 			for score in matches:
 				if score.file_path[:-4] not in history:	
 					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
