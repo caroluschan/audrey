@@ -8,6 +8,7 @@ from django.conf import settings
 from google import google
 import operator
 import sys
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 #Conversation: get score by lyrics    
 def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: scorebylyrics_1 | trigger: command[:14] == "/scorebylyrics"
