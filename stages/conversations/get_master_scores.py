@@ -54,6 +54,7 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 			buttons.append(buttonline)
 			buttonline = []
 			line = 0
+		buttons.append([InlineKeyboardButton(text=translate('CANCEL_BTN', person.lang), callback_data='/cancel')])
 		keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
 		person.sendText(message, keyboard)
 

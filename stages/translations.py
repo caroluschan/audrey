@@ -45,6 +45,11 @@ translations = {
 		"cn" : '你的要求已取消'
 	},
 
+	"CANCEL_BTN": {
+		"en" : 'Cancel',
+		"cn" : '取消'
+	},
+
 	#get master score
 	"MASTER_SCORE_1":{
 		"en": 'There are a lot of hymns my dear. What about choosing part of them first? The hymns will be ordered by the first letter of their name.\n\n',
