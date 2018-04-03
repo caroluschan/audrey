@@ -37,7 +37,7 @@ def uploadScore_3(command, person):
 	functions.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')])
 
 	keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
-	person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping Upload', keyboard)
+	person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], keyboard)
 
 def uploadScore_4(command, person):
 	if command == '/upload':
