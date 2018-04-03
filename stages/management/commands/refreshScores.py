@@ -62,4 +62,9 @@ class Command(BaseCommand):
 					stroke = self.strokeChecking(index['index'])
 				Index(identifier=id_generator(Index), index=index['index'], language=lang, stroke=stroke).save()
 				print('Indexing ' + index['index'])
+		for index in Index.objects.all():
+			if Scores.objects.filter(index=index.index).count() == 0:
+				print('Deindexing ' + index.index)
+				index.delete()
+
 			
