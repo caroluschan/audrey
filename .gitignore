@@ -1,3 +1,6 @@
 *.sqlite3
 *.pyc
 test_bot.py
+*.pdf
+users/migrations/
+stages/migrations/
