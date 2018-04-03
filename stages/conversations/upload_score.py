@@ -21,9 +21,13 @@ def uploadScore_1(command, person):
 def uploadScore_2(command, person):
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
-	person.stageUp()
-	person.setStorage('uploadScore', {'hymn_name':command})
-	person.sendText('Please upload the file here.')
+	if Scores.objects.filter(file_path=command+'.pdf').count() == 0:
+		person.stageUp()
+		person.setStorage('uploadScore', {'hymn_name':command})
+		person.sendText('Please upload the file here.')
+	else:
+		person.sendText(command + ' has been uploaded already.')
+		person.stageEnd()
 
 def uploadScore_3(command, person):
 	reload(sys)
@@ -51,4 +55,9 @@ def uploadScore_4(command, person):
 		person.popStorage('uploadScore')
 		person.stageEnd()
 	else:
-		person.sendText('The score of '+ tmp['hymn_name'] +' will be uploaded upon tapping /upload')
+		functions = []
+		functions.append([InlineKeyboardButton(text='Upload', callback_data='/upload')])
+		functions.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')])
+
+		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
+		person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], keyboard)
