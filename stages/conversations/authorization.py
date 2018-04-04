@@ -1,6 +1,7 @@
 from stages.models import *
 from users.models import *
 from stages.assist import *
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 #Conversation: authorization
 def auth_1(command, person):
