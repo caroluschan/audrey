@@ -43,6 +43,12 @@ translations = {
 		"cn": "_name_，請稍候，你將會在申請獲得批准後收到通知。"
 	},
 
+	#approve signup
+
+	"SIGNUP_APPROVED": {
+		"en": "Your signup is approved! I am now at your service my dear. Please tap the [ / ] button by the left of the send button for my utilities. ",
+		"cn": "您的註冊已獲批准！請點擊發送按鈕左側的[ / ]按鈕來使用我的服務。"
+	},
 
 	#cancel
 	"CANCEL": {

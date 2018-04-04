@@ -9,7 +9,7 @@ def approve_1(command, person): #command: /approve[telegram_id] | stage_code: ap
 		if user.is_approved is False:
 			user.approve()
 			user.stageEnd()
-			user.sendText("Your signup is approved! I am now at your service my dear. Please tap the [ / ] button by the left of the send button for my utilities. ")
+			user.sendText(translate('SIGNUP_APPROVED', person.lang))
 			for admin in getAdmins():
 				admin.sendText(person.user_name+" has approved the application of "+user.user_name+".")
 		else:
