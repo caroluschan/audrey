@@ -38,10 +38,7 @@ def uploadScore_3(command, person):
 	person.setStorage('uploadScore', tmp)
 	functions = []
 	functions.append([InlineKeyboardButton(text='Upload', callback_data='/upload')])
-	functions.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')])
-
-	keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
-	person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], keyboard)
+	person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], functions)
 	person.stageUp()
 
 def uploadScore_4(command, person):
@@ -58,7 +55,4 @@ def uploadScore_4(command, person):
 	else:
 		functions = []
 		functions.append([InlineKeyboardButton(text='Upload', callback_data='/upload')])
-		functions.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')])
-
-		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
-		person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], keyboard)
+		person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], functions)

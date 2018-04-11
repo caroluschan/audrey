@@ -111,8 +111,15 @@ class Person(models.Model):
 	####Outward Message####
 	#######################
 
-	def sendText(self, message, reply_markup=None):
-		self.bot.sendMessage(self.telegram_id, message, reply_markup=reply_markup)
+	def sendText(self, message, inline_keyboard=[], with_cancel=True):
+		function = inline_keyboard
+		if with_cancel:
+			function.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')]) 
+		if len(function) > 0:
+			keyboard = InlineKeyboardMarkup(inline_keyboard=function)
+			self.bot.sendMessage(self.telegram_id, message, reply_markup=keyboard)
+		else:
+			self.bot.sendMessage(self.telegram_id, message)
 
 	def sendDocument(self, document, message=None):
 		print('send doc')
