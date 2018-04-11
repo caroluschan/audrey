@@ -5,6 +5,7 @@ import sys
 import os
 import re
 from django.conf import settings
+from stages.translations import *
 
 def translate(s, lang='cn', var={}):
 	reload(sys)
