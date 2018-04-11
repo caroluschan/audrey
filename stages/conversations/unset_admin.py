@@ -6,6 +6,7 @@ from django.conf import settings
 def unsetAdmin_1(command, person):
 	if isAdmin(person):
 		lou = Person.objects.filter(is_admin=True).exclude(telegram_id=settings.SUPERADMIN)
+		functions = []
 		if lou:
 			message = 'Which admin to unset?'
 			for user in lou:

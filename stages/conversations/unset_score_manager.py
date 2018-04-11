@@ -6,6 +6,7 @@ from django.conf import settings
 def unsetScoreManager_1(command, person):
 	if isAdmin(person):
 		lou = Person.objects.filter(is_score_manager=True).exclude(telegram_id=settings.SUPERADMIN)
+		functions = []
 		if lou:
 			message = 'Which score manager to unset?'
 			for user in lou:

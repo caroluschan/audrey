@@ -6,6 +6,7 @@ from django.conf import settings
 def setScoreManager_1(command, person):
 	if isAdmin(person):
 		lou = Person.objects.filter(is_score_manager=False).exclude(telegram_id=settings.SUPERADMIN)
+		functions = []
 		if lou:
 			message = 'Which user to do you want to set as score manager?'
 			for user in lou:
