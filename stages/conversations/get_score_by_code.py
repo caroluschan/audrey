@@ -10,4 +10,4 @@ def songCode_1(command,person): #command: /songcode[code] | stage_code: songcode
 		if file:
 			person.sendDocument(settings.BASE_DIR+'/scores/'+file[0].file_path, translate('FOUND_DOC', person.lang))
 		else:
-			person.sendText(translate('NOT_FOUND_DOC_CODE', person.lang))
+			person.sendText(translate('NOT_FOUND_DOC_CODE', person.lang),with_cancel=False)

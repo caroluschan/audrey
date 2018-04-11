@@ -8,4 +8,4 @@ def listUsers_1(command, person): #command: /listusers | stage_code: listusers_1
 		message = '==List of Users==\n\nName\tTelegram ID\n'
 		for user in lou:
 			message += user.user_name + '\t' + user.telegram_id + '\n'
-		person.sendText(message)
+		person.sendText(message,with_cancel=False)

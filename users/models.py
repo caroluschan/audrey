@@ -116,7 +116,7 @@ class Person(models.Model):
 		function = []
 		function.extend(keyboard_content)
 		if with_cancel:
-			function.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')]) 
+			function.append([InlineKeyboardButton(text=translate('Cancel_BTN', self.lang), callback_data='/cancel')]) 
 		if len(function) > 0:
 			keyboard = InlineKeyboardMarkup(inline_keyboard=function)
 			self.bot.sendMessage(self.telegram_id, message, reply_markup=keyboard)

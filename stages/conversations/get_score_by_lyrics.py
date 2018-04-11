@@ -13,14 +13,14 @@ from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 #Conversation: get score by lyrics    
 def scoreByLyrics_1(command, person): #command: /scorebylyrics | stage_code: scorebylyrics_1 | trigger: command[:14] == "/scorebylyrics"
 	if isApproved(person):
+		person.sendText(translate('TELL_LYRICS', person.lang))
 		person.updateUserProgress('scoreByLyrics_1')
 		person.stageUp()
-		person.sendText(translate('TELL_LYRICS', person.lang))
 
 
 def scoreByLyrics_2(command, person):
 	if isApproved(person):
-		person.sendText(translate('FETCH_SONG', person.lang))
+		person.sendText(translate('FETCH_SONG', person.lang),with_cancel=False)
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
 		keyword = command + ' site:christianstudy.com/data/hymns/text'
@@ -55,8 +55,7 @@ def scoreByLyrics_2(command, person):
 				if score.file_path[:-4] not in history:	
 					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
 					history.append(score.file_path[:-4])
-			keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-			person.sendText(message, keyboard)
+			person.sendText(message, buttons,with_cancel=False)
 		else:
-			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang))
+			person.sendText(translate('NOT_FOUND_DOC_NAME', person.lang),with_cancel=False)
 		person.stageEnd()

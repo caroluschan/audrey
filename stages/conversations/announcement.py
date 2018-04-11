@@ -4,20 +4,24 @@ from stages.assist import *
 
 def announcement_1(command, person):
 	if isAdmin(person):
+		functions = []
+		functions.append([InlineKeyboardButton(text='Public', callback_data='/Public')])
+		functions.append([InlineKeyboardButton(text='Admin', callback_data='/Admin')])
+		functions.append([InlineKeyboardButton(text='Score Manager', callback_data='/ScoreManager')])
+		person.sendText('Who are the audiences?', functions)
 		person.updateUserProgress('announcement_1')
 		person.stageUp()
-		person.sendText('Who are the audiences?\n\n/Public    /Admin    /ScoreManager\n\n/cancel')
 
 def announcement_2(command, person):
 	if command[1:] == 'Public' or command[1:] == 'Admin' or command[1:] == 'ScoreManager':
 		person.setStorage('announcement',{'audiences':command[1:]})
+		functions = []
+		functions.append([InlineKeyboardButton(text='Yes', callback_data='/Yes')])
+		functions.append([InlineKeyboardButton(text='No', callback_data='/No')])
+		person.sendText('Do you want your name be shown?', functions)
 		person.stageUp()
-		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
-	elif command[1:] == 'cancel':
-		person.stageEnd()
-		person.sendText('Your request has been cancelled.')
 	else:
-		person.sendText('I do not understand.')
+		person.sendText('I do not understand.',with_cancel=False)
 		person.stageDown()
 		announcement_1(command, person)
 
@@ -27,26 +31,23 @@ def announcement_3(command, person):
 		tmp = person.getStorage('announcement')
 		tmp['named'] = True if command[1:] == 'Yes' else False
 		person.setStorage('announcement', tmp)
-		person.sendText('Tell me the announcement to be made.\n\n/cancel')
-	elif command[1:] == 'cancel':
-		person.stageEnd()
-		person.popStorage('announcement')
-		person.sendText('Your request has been cancelled.')
+		person.sendText('Tell me the announcement to be made.')
 	else:
+		functions = []
+		functions.append([InlineKeyboardButton(text='Yes', callback_data='/Yes')])
+		functions.append([InlineKeyboardButton(text='No', callback_data='/No')])
+		person.sendText('Do you want your name be shown?', functions)
 		person.stageDown()
-		person.sendText('Do you want your name be shown?\n\n/Yes        /No\n\n/cancel')
 
 def announcement_4(command, person):
-	if command[1:] != 'cancel':
-		person.stageUp()
-		tmp = person.getStorage('announcement')
-		tmp['message'] = command
-		person.setStorage('announcement', tmp)
-		person.sendText('Announcement will be made as soon as you tap /send.\n\n/cancel')
-	else:
-		person.stageEnd()
-		person.popStorage('announcement')
-		person.sendText('Your request has been cancelled.')
+	person.stageUp()
+	tmp = person.getStorage('announcement')
+	tmp['message'] = command
+	person.setStorage('announcement', tmp)
+	functions = []
+	functions.append([InlineKeyboardButton(text='Send', callback_data='/send')])
+	person.sendText('Announcement will be made as soon as you tap Send.', functions)
+
 
 def announcement_5(command, person):
 	if command[1:] == 'send':
@@ -71,13 +72,11 @@ def announcement_5(command, person):
 		elif tmp['audiences'] == 'ScoreManager':
 			sendTextToScoreManagers(message)
 			
-		person.sendText('Your announcement has been made')
+		person.sendText('Your announcement has been made', with_cancel=False)
 		person.stageEnd()
 		person.popStorage('announcement')
-	elif command[1:] == 'cancel':
-		person.stageEnd()
-		person.popStorage('announcement')
-		person.sendText('Your request has been cancelled.')
 	else:
-		person.sendText('Announcement will be made as soon as you tap /send.\n\n/cancel')
+		functions = []
+		functions.append([InlineKeyboardButton(text='Send', callback_data='/send')])
+		person.sendText('Announcement will be made as soon as you tap Send.', functions)
 

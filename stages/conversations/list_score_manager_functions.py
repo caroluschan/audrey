@@ -9,9 +9,7 @@ def listScoreManagerFunctions_1(command,person):
 		functions.append([InlineKeyboardButton(text='List Score Manager', callback_data='/listscoremanagers')])
 		functions.append([InlineKeyboardButton(text='Upload Score', callback_data='/uploadscore')])
 
-		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
-
 		message = '===Score Manager Menu==='
 
 
-		person.sendText(message, keyboard)
+		person.sendText(message, functions,with_cancel=False)

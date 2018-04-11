@@ -17,8 +17,6 @@ def listAdminFunctions_1(command,person):
 		functions.append([InlineKeyboardButton(text='Unset Score Manager', callback_data='/unsetscoremanager')])
 		functions.append([InlineKeyboardButton(text='Announcement', callback_data='/announcement')])
 
-		keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
-
 		message = '====Admin Menu===='
 
-		person.sendText(message, keyboard)
+		person.sendText(message, functions,with_cancel=False)

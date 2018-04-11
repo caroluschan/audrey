@@ -189,5 +189,12 @@ translations = {
 	"SIGNUP_ALREADY": {
 		"en": "You have signed up already",
 		"cn": "你已經註冊了"
+	},
+
+	#Rename
+
+	"NAME_CHANGED_TARGET": {
+		"en": "Your name has been changed from _old_ to _new_.",
+		"cn": "你的名字已經由_old_改為_new_。"
 	}
 }

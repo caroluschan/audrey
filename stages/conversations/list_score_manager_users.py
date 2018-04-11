@@ -9,4 +9,4 @@ def listScoreManagers_1(command, person): #command: /listadmins | stage_code: li
 		message = '==List of Score Managers==\n\nName\tTelegram ID\n'
 		for user in lou:
 			message += user.user_name + '\t' + user.telegram_id + '\n'
-		person.sendText(message)
+		person.sendText(message,with_cancel=False)

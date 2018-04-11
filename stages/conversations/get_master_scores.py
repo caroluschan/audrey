@@ -14,8 +14,6 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 	if isApproved(person):
 		reload(sys)
 		sys.setdefaultencoding('utf-8')
-		person.updateUserProgress('listScores_1')
-		person.stageUp()
 		connection.cursor()
 		connection.connection.text_factory = lambda x: unicode(x, "utf-8", "ignore")
 		message = translate('MASTER_SCORE_1', person.lang)
@@ -54,15 +52,14 @@ def listScores_1(command, person): #command: /listscores | stage_code: listScore
 			buttons.append(buttonline)
 			buttonline = []
 			line = 0
-		buttons.append([InlineKeyboardButton(text=translate('CANCEL_BTN', person.lang), callback_data='/cancel')])
-		keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-		person.sendText(message, keyboard)
+		person.sendText(message, buttons)
+		person.updateUserProgress('listScores_1')
+		person.stageUp()
 
 
 def listScores_2(command, person):
 	try:
 		if isApproved(person):
-			person.stageUp()
 			if command[:2] != '/s':
 				listScores_3('/'+Index.objects.filter(index=command[1:])[0].identifier, person)
 			else:
@@ -85,10 +82,10 @@ def listScores_2(command, person):
 					buttonline = []
 					line = 0
 				buttons.append([InlineKeyboardButton(text=translate('BACK', person.lang), callback_data='/back')])
-				keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-				person.sendText(message, keyboard)
+				person.sendText(message, buttons)
+			person.stageUp()
 	except IndexError:
-		person.sendText(translate('NOT_UNDERSTAND', person.lang))
+		person.sendText(translate('NOT_UNDERSTAND', person.lang),with_cancel=False)
 		person.stageEnd()
 
 def listScores_3(command, person):
@@ -100,7 +97,6 @@ def listScores_3(command, person):
 				person.stageDown()
 				listScores_2(command,person)
 			else:
-				person.stageUp()
 				reload(sys)
 				sys.setdefaultencoding('utf-8')
 				connection.cursor()
@@ -116,11 +112,11 @@ def listScores_3(command, person):
 				message = translate('ANOTHER_LETTER', person.lang)
 				buttons = []
 				buttons.append([InlineKeyboardButton(text=translate('YES', person.lang), callback_data='/Yes'), InlineKeyboardButton(text=translate('NO', person.lang), callback_data='/No')])
-				keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-				person.sendText(message, keyboard)
+				person.sendText(message, buttons, with_cancel=False)
+				person.stageUp()
 
 	except IndexError:
-		person.sendText(translate('NOT_UNDERSTAND', person.lang))
+		person.sendText(translate('NOT_UNDERSTAND', person.lang),with_cancel=False)
 		person.stageEnd()
 
 def listScores_4(command, person):
@@ -132,19 +128,18 @@ def listScores_4(command, person):
 			message = translate('ANOTHER_LETTER', person.lang)
 			buttons = []
 			buttons.append([InlineKeyboardButton(text=translate('YES', person.lang), callback_data='/Yes'), InlineKeyboardButton(text=translate('NO', person.lang), callback_data='/No')])
-			keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-			person.sendText(message, keyboard)
+			person.sendText(message, buttons,with_cancel=False)
 		elif Index.objects.filter(identifier=command[1:]).count() > 0:
 			person.stageDown()
 			person.stageDown()
 			listScores_3(command, person)
 		elif command[1:] == 'No':
-			person.sendText(translate('FOUND_SCORE', person.lang))
+			person.sendText(translate('FOUND_SCORE', person.lang),with_cancel=False)
 			person.stageEnd()
 		elif command[:2] == '/s' or Index.objects.filter(index=command[1:]).count() > 0:
 				person.stageDown()
 				person.stageDown()
 				listScores_2(command,person)
 		else:
-			person.sendText(translate('NOT_UNDERSTAND', person.lang))
+			person.sendText(translate('NOT_UNDERSTAND', person.lang),with_cancel=False)
 			person.stageEnd()
