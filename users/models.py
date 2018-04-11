@@ -112,8 +112,8 @@ class Person(models.Model):
 	####Outward Message####
 	#######################
 
-	def sendText(self, message, inline_keyboard=[], with_cancel=True):
-		function = inline_keyboard
+	def sendText(self, message, keyboard_content=[], with_cancel=True):
+		function = keyboard_content
 		if with_cancel:
 			function.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')]) 
 		if len(function) > 0:
