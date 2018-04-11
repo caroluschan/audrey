@@ -14,25 +14,25 @@ from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 def uploadScore_1(command, person):
 	if isScoreManager(person):
+		person.sendText('Please tell me the name of the hymn.')
 		person.updateUserProgress('uploadScore_1')
 		person.stageUp()
-		person.sendText('Please tell me the name of the hymn.')
 
 def uploadScore_2(command, person):
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
-	if Scores.objects.filter(file_path=command+'.pdf').count() == 0:
-		person.stageUp()
-		person.setStorage('uploadScore', {'hymn_name':command})
-		person.sendText('Please upload the file here.')
-	else:
-		person.sendText(command + ' has been uploaded already.')
-		person.stageEnd()
+	if command != '/uploadscore': #principle: stage 2 blocks the bull
+		if Scores.objects.filter(file_path=command+'.pdf').count() == 0:
+			person.setStorage('uploadScore', {'hymn_name':command})
+			person.sendText('Please upload the file here.')
+			person.stageUp()
+		else:
+			person.sendText(command + ' has been uploaded already.')
+			person.stageEnd()
 
 def uploadScore_3(command, person):
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
-	person.stageUp()
 	tmp = person.getStorage('uploadScore')
 	tmp['file_id'] = command['file_id']
 	person.setStorage('uploadScore', tmp)
@@ -42,6 +42,7 @@ def uploadScore_3(command, person):
 
 	keyboard = InlineKeyboardMarkup(inline_keyboard=functions)
 	person.sendText('The score will be uploaded upon tapping Upload. Please tap cancel if the hymn name is wrong. \n\n Hymn Name: '+tmp['hymn_name'], keyboard)
+	person.stageUp()
 
 def uploadScore_4(command, person):
 	if command == '/upload':
