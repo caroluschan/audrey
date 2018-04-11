@@ -61,21 +61,21 @@ def id_generator(model, size=6, chars=string.ascii_uppercase + string.digits):
 
 
 
-def sendTextToAdmins(message, keyboard=None):
+def sendTextToAdmins(message, keyboard=[],with_cancel=False):
 	for admin in getAdmins():
-			admin.sendText(message, keyboard)
+			admin.sendText(message, keyboard, with_cancel)
 
-def sendTextToScoreManagers(message, keyboard=None):
+def sendTextToScoreManagers(message, keyboard=[],with_cancel=False):
 	for manager in getScoreManagers():
-			manager.sendText(message, keyboard)
+			manager.sendText(message, keyboard, with_cancel)
 
-def sendTextToScoreManagersNotAdmin(message, keyboard=None):
+def sendTextToScoreManagersNotAdmin(message, keyboard=[],with_cancel=False):
 	for manager in getScoreManagersNotAdmin():
-			manager.sendText(message, keyboard)
+			manager.sendText(message, keyboard, with_cancel)
 
-def sendTextToAll(message, keyboard=None):
+def sendTextToAll(message, keyboard=[],with_cancel=False):
 	for person in Person.objects.all():
-			person.sendText(message, keyboard)
+			person.sendText(message, keyboard, with_cancel)
 
 
 
