@@ -107,7 +107,7 @@ def listScores_3(command, person):
 				buttons = []
 				for score in scores:
 					buttons.append([InlineKeyboardButton(text=score.file_path[:-4], callback_data='/songcode'+score.identifier)])
-				person.sendText(message, buttons)
+				person.sendText(message, buttons,with_cancel=False)
 				message = translate('ANOTHER_LETTER', person.lang)
 				buttons = []
 				buttons.append([InlineKeyboardButton(text=translate('YES', person.lang), callback_data='/Yes'), InlineKeyboardButton(text=translate('NO', person.lang), callback_data='/No')])
