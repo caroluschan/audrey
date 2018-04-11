@@ -9,6 +9,7 @@ import telepot
 import json
 import sys
 import re
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Create your models here.
 
