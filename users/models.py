@@ -113,7 +113,8 @@ class Person(models.Model):
 	#######################
 
 	def sendText(self, message, keyboard_content=[], with_cancel=True):
-		function = keyboard_content
+		function = []
+		function.extend(keyboard_content)
 		if with_cancel:
 			function.append([InlineKeyboardButton(text='Cancel', callback_data='/cancel')]) 
 		if len(function) > 0:
