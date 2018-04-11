@@ -9,7 +9,7 @@ def unsetAdmin_1(command, person):
 		if lou:
 			message = 'Which admin to unset?'
 			for user in lou:
-				functions.append([InlineKeyboardButton(text=user.user_name, callback_data=user.telegram_id)])
+				functions.append([InlineKeyboardButton(text=user.user_name, callback_data='/'+user.telegram_id)])
 			person.sendText(message, functions)
 		else:
 			message = 'There is no admin to be unset.'

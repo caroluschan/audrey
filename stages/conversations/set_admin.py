@@ -10,7 +10,7 @@ def setAdmin_1(command, person):
 		if lou:
 			message = 'Which user to do you want to set as admin?'
 			for user in lou:
-				functions.append([InlineKeyboardButton(text=user.user_name, callback_data=user.telegram_id)])
+				functions.append([InlineKeyboardButton(text=user.user_name, callback_data='/'+user.telegram_id)])
 			person.sendText(message, functions)
 		else:
 			message = 'There is no other users to be set as admin.'

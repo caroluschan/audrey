@@ -9,7 +9,7 @@ def unsetScoreManager_1(command, person):
 		if lou:
 			message = 'Which score manager to unset?'
 			for user in lou:
-				functions.append([InlineKeyboardButton(text=user.user_name, callback_data=user.telegram_id)])
+				functions.append([InlineKeyboardButton(text=user.user_name, callback_data='/'+user.telegram_id)])
 			person.sendText(message, functions)
 		else:
 			message = 'There is no score manager to be unset.'

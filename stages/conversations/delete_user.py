@@ -8,7 +8,7 @@ def deleteUser_1(command, person): #command: /deleteuser | stage_code: deleteUse
 		message = 'Please choose the user to be deleted'
 		functions = []
 		for user in lou:
-			functions.append([InlineKeyboardButton(text=user.user_name, callback_data=user.telegram_id)])
+			functions.append([InlineKeyboardButton(text=user.user_name, callback_data='/'+user.telegram_id)])
 		person.sendText(message, functions)
 		person.updateUserProgress('deleteUser_1')
 		person.stageUp()

@@ -8,7 +8,7 @@ def renameUser_1(command, person):
 		lou = Person.objects.all()
 		functions = []
 		for user in lou:
-			functions.append([InlineKeyboardButton(text=user.user_name, callback_data=user.telegram_id)])
+			functions.append([InlineKeyboardButton(text=user.user_name, callback_data='/'+user.telegram_id)])
 		person.sendText(message, functions)
 		person.updateUserProgress('renameUser_1')
 		person.stageUp()
