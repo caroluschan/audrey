@@ -10,7 +10,7 @@ import json
 import sys
 import re
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
-from stages.assist import translate
+from users.assist import translate
 
 # Create your models here.
 
