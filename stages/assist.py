@@ -8,6 +8,7 @@ from django.conf import settings
 from stages.models import *
 from users.models import *
 from stages.translations import *
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 #######################
 ####Assist Function####
@@ -116,6 +117,11 @@ def translate(s, lang='cn', var={}):
 		result = construct
 	return result
 
+def addBtnLine(target, collection):
+	line = []
+	for key, value in collection:
+		line.append(InlineKeyboardButton(text=key, callback_data=value)
+	target.append(line)
 
 
 
