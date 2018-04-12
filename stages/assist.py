@@ -117,11 +117,13 @@ def translate(s, lang='cn', var={}):
 		result = construct
 	return result
 
-def addBtnLine(target=[], collection):
+def addBtnLine(target, collection):
+	result = []
+	result.extend(target)
 	line = []
 	for key, value in collection:
 		line.append(InlineKeyboardButton(text=key, callback_data=value)
-	target.append(line)
-
+	result.append(line)
+	target = result
 
 
