@@ -8,6 +8,9 @@ def listScoreManagerFunctions_1(command,person):
 		functions = []
 		functions.append([InlineKeyboardButton(text='List Score Manager', callback_data='/listscoremanagers')])
 		functions.append([InlineKeyboardButton(text='Upload Score', callback_data='/uploadscore')])
+		addBtnLine(functions, {'List Themes':'/listtheme'})
+		addBtnLine(functions, {'Add Theme':'/addtheme'})
+		addBtnLine(functions, {'Delete Theme':'/deletetheme'})
 
 		message = '===Score Manager Menu==='
 
