@@ -262,11 +262,33 @@ STAGES= [
       'stage_code':'announcement'
    },
 
+  ############################
+  ###Score Manager Function###
+  ############################
+
 
    #Conversation: upload score
     {
       'command_pattern_check':'command == "/uploadscore"',
       'stage_code':'uploadScore'
+    },
+
+    #Conversations: list theme
+    {
+      'command_pattern_check':'command == "/listtheme"',
+      'stage_code':'listTheme'
+    },
+
+    #Conversations: add theme
+    {
+      'command_pattern_check':'command == "/addtheme"',
+      'stage_code':'addTheme'
+    },
+
+    #Conversations: delete theme
+    {
+      'command_pattern_check':'command == "/deletetheme"',
+      'stage_code':'deleteTheme'
     }
 ]
 
