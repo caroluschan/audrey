@@ -55,7 +55,8 @@ def id_generator(model, size=6, chars=string.ascii_uppercase + string.digits):
 	identifier = None
 	while True:
 		identifier =  ''.join(random.choice(chars) for _ in range(size))
-		if model.objects.filter(identifier=identifier).count() == 0:
+		tmp = model
+		if tmp.objects.filter(identifier=identifier).count() == 0:
 			break
 	return identifier
 

@@ -83,5 +83,18 @@ from conversations.list_score_manager_functions import *
 #Conversation: announcement
 from conversations.announcement import *
 
-#Conversation: upload score???
+############################
+###Score Manager Function###
+############################
+
+#Conversation: upload score
 from conversations.upload_score import *
+
+#Conversation: list theme
+from conversations.list_theme import *
+
+#Conversation: add theme
+from conversations.add_theme import *
+
+#Conversation: delete theme
+from conversations.delete_theme import *
