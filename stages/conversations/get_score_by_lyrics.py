@@ -5,7 +5,7 @@ from stages.models import *
 from users.models import *
 from stages.assist import *
 from django.conf import settings
-from google import google
+import googlesearch as google
 import operator
 import sys
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
