@@ -114,20 +114,29 @@ class Person(models.Model):
 	#######################
 
 	def sendText(self, message, keyboard_content=[], with_cancel=True):
-		function = []
-		function.extend(keyboard_content)
-		if with_cancel:
-			function.append([InlineKeyboardButton(text=translate('CANCEL_BTN', self.lang), callback_data='/cancel')]) 
-		if len(function) > 0:
-			keyboard = InlineKeyboardMarkup(inline_keyboard=function)
-			self.bot.sendMessage(self.telegram_id, message, reply_markup=keyboard)
-		else:
-			self.bot.sendMessage(self.telegram_id, message)
+		try:
+			function = []
+			function.extend(keyboard_content)
+			if with_cancel:
+				function.append([InlineKeyboardButton(text=translate('CANCEL_BTN', self.lang), callback_data='/cancel')])
+			if len(function) > 0:
+				keyboard = InlineKeyboardMarkup(inline_keyboard=function)
+				self.bot.sendMessage(self.telegram_id, message, reply_markup=keyboard)
+			else:
+				self.bot.sendMessage(self.telegram_id, message)
+		except telepot.exception.TelegramError:
+			pass
 
 	def sendDocument(self, document, message=None):
-		print('send doc')
-		self.bot.sendDocument(self.telegram_id, open(document), message)
+		try:
+			print('send doc')
+			self.bot.sendDocument(self.telegram_id, open(document), message)
+		except telepot.exception.TelegramError:
+			pass
 
 	def sendAudio(self, audio, message=None):
-		print('send audio')
-		self.bot.sendAudio(self, open(audio), message)
+		try:
+			print('send audio')
+			self.bot.sendAudio(self, open(audio), message)
+		except telepot.exception.TelegramError:
+			pass
