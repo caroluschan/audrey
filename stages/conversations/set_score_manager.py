@@ -20,7 +20,7 @@ def setScoreManager_1(command, person):
 		person.stageUp()
 
 def setScoreManager_2(command, person):
-	target = Person.objects.filter(telegram_id=command[1:])[0]
+	target = Person.objects.filter(telegram_id=command.replace('/', ''))[0]
 	target.setAsScoreManager()
 	sendTextToAdmins(target.user_name + ' has been set as score manager by ' + person.user_name,with_cancel=False)
 	sendTextToScoreManagersNotAdmin(target.user_name + ' has been set as score manager by ' + person.user_name,with_cancel=False)
